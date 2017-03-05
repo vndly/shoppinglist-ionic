@@ -1,2 +1,2 @@
-# shoppinglist-ionic
+# Shopping List Ionic
 Work in progress...
