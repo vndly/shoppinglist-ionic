@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-
 import { NavController } from 'ionic-angular';
+import { AddPage } from '../add/add';
 
 @Component({
-	selector: 'page-home',
-	templateUrl: 'home.html'
+	selector: 'page-cart',
+	templateUrl: 'cart.html'
 })
-export class HomePage {
+export class CartPage {
 
 	constructor(public navCtrl: NavController) {
 
@@ -14,6 +14,6 @@ export class HomePage {
 
 	addProduct()
 	{
-		alert('AKANT!')	
+		this.navCtrl.push(AddPage);
 	}
 }
