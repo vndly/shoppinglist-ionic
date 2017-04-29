@@ -3,12 +3,14 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { CartPage } from '../pages/cart/cart';
 import { AddPage } from '../pages/add/add';
+import { CreatePage } from '../pages/create/create';
 
 @NgModule({
 	declarations: [
 		MyApp,
 		CartPage,
-		AddPage
+		AddPage,
+		CreatePage
 	],
 	imports: [
 		IonicModule.forRoot(MyApp)
@@ -17,7 +19,8 @@ import { AddPage } from '../pages/add/add';
 	entryComponents: [
 		MyApp,
 		CartPage,
-		AddPage
+		AddPage,
+		CreatePage
 	],
 	providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }]
 })

@@ -11,6 +11,22 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content padding>
-	List of items in cart
+<ion-content>
+	<ion-list>
+
+		<ion-item-sliding *ngFor="let item of cart">
+
+			<ion-item>
+				{{item.title}}
+			</ion-item>
+
+			<ion-item-options>
+				<button ion-button icon-only (click)="removeItem(item)" color="danger">
+                    <ion-icon name="trash"></ion-icon>
+                </button>
+			</ion-item-options>
+
+		</ion-item-sliding>
+
+	</ion-list>
 </ion-content>
