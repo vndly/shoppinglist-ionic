@@ -11,6 +11,15 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content padding>
-	List of available products
+<ion-content>
+	<ion-list-header color="light">
+		<div style="text-align: center">{{categoryName}}</div>
+	</ion-list-header>
+	<ion-slides (ionSlideDidChange)="slideChanged()">
+		<ion-slide *ngFor="let category of categories" class="category-slide">
+			<ion-list>
+				<ion-item *ngFor="let product of category.products" (click)="addProduct(product)">{{product.title}}</ion-item>
+			</ion-list>
+		</ion-slide>
+	</ion-slides>
 </ion-content>

@@ -52,9 +52,8 @@ export class CartPage {
 	}
 
 	removeItemFromCart(item: Item) {
-		//this.cart.pop(item);
-
 		var index = this.cart.indexOf(item, 0);
+		
 		if (index > -1) {
 			this.cart.splice(index, 1);
 		}
