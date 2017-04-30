@@ -16,8 +16,8 @@
 
 		<ion-item-sliding *ngFor="let item of cart">
 
-			<ion-item>
-				{{item.title}}
+			<ion-item (click)="toggleItem(item)">
+				<div [class.complete]="item.complete">{{item.title}}</div>
 			</ion-item>
 
 			<ion-item-options>

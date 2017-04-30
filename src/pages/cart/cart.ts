@@ -9,24 +9,37 @@ import { Item } from '../../app/models/item';
 })
 export class CartPage {
 
-	public cart: [Item];
+	public cart: Item[];
 
 	constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
 
 		this.cart = [
-			new Item('Bread'),
-			new Item('Milk'),
-			new Item('Cheese'),
-			new Item('Snacks'),
-			new Item('Apples'),
-			new Item('Bananas'),
-			new Item('Peanut Butter'),
-			new Item('Chocolate'),
-			new Item('Avocada'),
-			new Item('Vegemite'),
-			new Item('Muffins'),
-			new Item('Paper towels')
+			new Item('Bread', false),
+			new Item('Milk', false),
+			new Item('Cheese', false),
+			new Item('Snacks', false),
+			new Item('Apples', false),
+			new Item('Bananas', false),
+			new Item('Peanut Butter', false),
+			new Item('Chocolate', false),
+			new Item('Avocada', false),
+			new Item('Vegemite', false),
+			new Item('Muffins', false),
+			new Item('Paper towels', false)
 		];
+	}
+
+	toggleItem(item: Item) {
+		item.complete = !item.complete;
+
+		this.refreshItems();
+	}
+
+	private refreshItems() {
+		var incompleted: Item[] = this.cart.filter((item: Item) => !item.complete);
+		var completed: Item[] = this.cart.filter((item: Item) => item.complete);
+
+		this.cart = incompleted.concat(completed);
 	}
 
 	addProduct() {

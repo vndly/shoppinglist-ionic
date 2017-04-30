@@ -1,4 +1,4 @@
 export class Item {
-    constructor(public title: String){
+    constructor(public title: String, public complete: Boolean){
     }
 }
