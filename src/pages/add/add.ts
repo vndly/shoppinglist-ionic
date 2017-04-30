@@ -52,8 +52,9 @@ export class AddPage {
 		}
 	}
 
-	addProduct(product: Product) {
-		alert('Product: ' + product.title);
+	addProduct(category: Category, product: Product) {
+		var elem = this.categories[this.categories.indexOf(category)];
+		elem.products.remove(product);
 	}
 
 	createProduct() {

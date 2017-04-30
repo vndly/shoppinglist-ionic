@@ -65,10 +65,6 @@ export class CartPage {
 	}
 
 	removeItemFromCart(item: Item) {
-		var index = this.cart.indexOf(item, 0);
-		
-		if (index > -1) {
-			this.cart.splice(index, 1);
-		}
+		this.cart.remove(item);
 	}
 }
