@@ -20,10 +20,12 @@ export class AddPage {
 	constructor(public navCtrl: NavController) {
 
 		this.categories = [
-			new Category('Category 1', [
-				new Product('Product 1.1', 'http://i.imgur.com/t70eCC1.png'),
-				new Product('Product 1.2', 'http://i.imgur.com/t70eCC1.png'),
-				new Product('Product 1.3', 'http://i.imgur.com/t70eCC1.png')]),
+			new Category('Beverages', [
+				Product.PRODUCT_BEER,
+				Product.PRODUCT_COFFEE,
+				Product.PRODUCT_SODA,
+				Product.PRODUCT_WATER,
+				Product.PRODUCT_ICE_TEA]),
 			new Category('Category 2', [
 				new Product('Product 2.1', 'http://i.imgur.com/t70eCC1.png'),
 				new Product('Product 2.2', 'http://i.imgur.com/t70eCC1.png'),

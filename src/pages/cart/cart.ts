@@ -14,7 +14,7 @@ export class CartPage {
 	constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
 
 		this.cart = [
-			new Item('Bread', 'http://i.imgur.com/WmfEenJ.png', false),
+			new Item('Bread', 'http://i.imgur.com/t70eCC1.png', false),
 			new Item('Milk', 'http://i.imgur.com/t70eCC1.png', false),
 			new Item('Cheese', 'http://i.imgur.com/t70eCC1.png', false),
 			new Item('Snacks', 'http://i.imgur.com/t70eCC1.png', false),

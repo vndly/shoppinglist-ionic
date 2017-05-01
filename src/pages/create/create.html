@@ -6,6 +6,36 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content padding>
-	Screen to create a product
+<ion-content>
+	
+	<ion-list>
+
+		<ion-list-header class="list-header">Category</ion-list-header>
+		<ion-item>
+			<ion-label>Category</ion-label>
+			<ion-select [(ngModel)]="categorySelected" class="category-select" placeholder="Category">
+				<ion-option *ngFor="let category of categories" [value]="category" multiple="false">{{category.name}}</ion-option>
+			</ion-select>
+		</ion-item>
+
+		<ion-list-header class="list-header">Name</ion-list-header>
+		<ion-item>
+			<ion-input style="padding-left:16px" type="text" value="" placeholder="Name"></ion-input>
+		</ion-item>
+
+		<ion-list-header class="list-header">Image</ion-list-header>
+		<ion-item>
+			<ion-input style="padding-left:16px" type="text" value="{{imageUrl}}" placeholder="http://i.imgur.com/OkHEj66.png"></ion-input>
+		</ion-item>
+
+	</ion-list>
+
+	<div style="width:100%;text-align: center;margin-bottom:30px">
+		<img src="{{(imageUrl.length == 0) ? 'http://i.imgur.com/OkHEj66.png' : imageUrl}}" />
+	</div>
+
+	<div class="create-product-button">
+		<button (click)="createProduct()" class="button button-ios button-default button-default-ios button-block button-block-ios" ion-button>Create</button>
+	</div>
+
 </ion-content>
