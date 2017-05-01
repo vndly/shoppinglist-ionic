@@ -1,4 +1,4 @@
 export class Product {
-    constructor(public title: String){
+    constructor(public title: String, public imageUrl: String){
     }
 }

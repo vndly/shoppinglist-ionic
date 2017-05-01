@@ -14,19 +14,23 @@ export class CartPage {
 	constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
 
 		this.cart = [
-			new Item('Bread', false),
-			new Item('Milk', false),
-			new Item('Cheese', false),
-			new Item('Snacks', false),
-			new Item('Apples', false),
-			new Item('Bananas', false),
-			new Item('Peanut Butter', false),
-			new Item('Chocolate', false),
-			new Item('Avocada', false),
-			new Item('Vegemite', false),
-			new Item('Muffins', false),
-			new Item('Paper towels', false)
+			new Item('Bread', 'http://i.imgur.com/WmfEenJ.png', false),
+			new Item('Milk', 'http://i.imgur.com/t70eCC1.png', false),
+			new Item('Cheese', 'http://i.imgur.com/t70eCC1.png', false),
+			new Item('Snacks', 'http://i.imgur.com/t70eCC1.png', false),
+			new Item('Apples', 'http://i.imgur.com/t70eCC1.png', false),
+			new Item('Bananas', 'http://i.imgur.com/t70eCC1.png', false),
+			new Item('Peanut Butter', 'http://i.imgur.com/t70eCC1.png', false),
+			new Item('Chocolate', 'http://i.imgur.com/t70eCC1.png', false),
+			new Item('Avocada', 'http://i.imgur.com/t70eCC1.png', false),
+			new Item('Vegemite', 'http://i.imgur.com/t70eCC1.png', false),
+			new Item('Muffins', 'http://i.imgur.com/t70eCC1.png', false),
+			new Item('Paper towels', 'http://i.imgur.com/t70eCC1.png', false)
 		];
+	}
+
+	shareCart() {
+		alert('SHARE CART');
 	}
 
 	toggleItem(item: Item) {

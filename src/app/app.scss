@@ -13,3 +13,13 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.item ion-thumbnail {
+	min-width: 3rem;    
+	min-height: 3rem;
+
+	img {
+		max-width: 3rem;    
+		max-height: 3rem;
+	}
+}
