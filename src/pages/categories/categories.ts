@@ -63,7 +63,8 @@ export class CategoriesPage
 
 	removeCategory(category: Category)
 	{
-		let alert = this.alertCtrl.create({
+		let alert = this.alertCtrl.create(
+		{
 			title: 'Remove category',
 			message: "Do you want to remove <b>" + category.name + "</b>?",
 			buttons: [

@@ -3,33 +3,23 @@ import { NavController, AlertController } from 'ionic-angular';
 import { AddPage } from '../add/add';
 import { Item } from '../../app/models/item';
 import { ToastService } from '../../app/services/toast';
+import { DatabaseService } from '../../app/services/database';
 
 @Component({
 	selector: 'page-cart',
 	templateUrl: 'cart.html',
-	providers: [ToastService]
+	providers: [ToastService, DatabaseService]
 })
 export class CartPage
 {
 	public cart: Item[];
 
-	constructor(public navCtrl: NavController, public alertCtrl: AlertController, public toast: ToastService)
+	constructor(public navCtrl: NavController,
+				public alertCtrl: AlertController,
+				public toast: ToastService,
+				public databsae: DatabaseService)
 	{
-
-		this.cart = [
-			new Item('Bread', 'http://i.imgur.com/t70eCC1.png', false),
-			new Item('Milk', 'http://i.imgur.com/t70eCC1.png', false),
-			new Item('Cheese', 'http://i.imgur.com/t70eCC1.png', false),
-			new Item('Snacks', 'http://i.imgur.com/t70eCC1.png', false),
-			new Item('Apples', 'http://i.imgur.com/t70eCC1.png', false),
-			new Item('Bananas', 'http://i.imgur.com/t70eCC1.png', false),
-			new Item('Peanut Butter', 'http://i.imgur.com/t70eCC1.png', false),
-			new Item('Chocolate', 'http://i.imgur.com/t70eCC1.png', false),
-			new Item('Avocada', 'http://i.imgur.com/t70eCC1.png', false),
-			new Item('Vegemite', 'http://i.imgur.com/t70eCC1.png', false),
-			new Item('Muffins', 'http://i.imgur.com/t70eCC1.png', false),
-			new Item('Paper towels', 'http://i.imgur.com/t70eCC1.png', false)
-		];
+		this.cart = this.databsae.items();
 	}
 
 	shareCart()
@@ -59,7 +49,8 @@ export class CartPage
 
 	removeItem(item: Item)
 	{
-		let prompt = this.alertCtrl.create({
+		let prompt = this.alertCtrl.create(
+		{
 			title: 'Remove "' + item.title + '" from cart?',
 			buttons: [
 				{

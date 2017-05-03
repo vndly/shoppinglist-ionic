@@ -4,53 +4,34 @@ import { CreatePage } from '../create/create';
 import { Slides } from 'ionic-angular';
 import { Category } from '../../app/models/category';
 import { Product } from '../../app/models/product';
+import { DatabaseService } from '../../app/services/database';
 
 @Component({
 	selector: 'page-add',
-	templateUrl: 'add.html'
+	templateUrl: 'add.html',
+	providers: [DatabaseService]
 })
 export class AddPage
 {
 	public categoryName: String = "";
 
-	public categories: [Category];
+	public categories: Category[];
 
 	@ViewChild(Slides) slides: Slides;
 
-	constructor(public navCtrl: NavController) {
-
-		this.categories = [
-			new Category('Beverages', [
-				Product.PRODUCT_BEER,
-				Product.PRODUCT_COFFEE,
-				Product.PRODUCT_SODA,
-				Product.PRODUCT_WATER,
-				Product.PRODUCT_ICE_TEA]),
-			new Category('Category 2', [
-				new Product('Product 2.1', 'http://i.imgur.com/t70eCC1.png'),
-				new Product('Product 2.2', 'http://i.imgur.com/t70eCC1.png'),
-				new Product('Product 2.3', 'http://i.imgur.com/t70eCC1.png')]),
-			new Category('Category 3', [
-				new Product('Product 3.1', 'http://i.imgur.com/t70eCC1.png'),
-				new Product('Product 3.2', 'http://i.imgur.com/t70eCC1.png'),
-				new Product('Product 3.3', 'http://i.imgur.com/t70eCC1.png')]),
-			new Category('Category 4', [
-				new Product('Product 4.1', 'http://i.imgur.com/t70eCC1.png'),
-				new Product('Product 4.2', 'http://i.imgur.com/t70eCC1.png'),
-				new Product('Product 4.3', 'http://i.imgur.com/t70eCC1.png')]),
-			new Category('Category 5', [
-				new Product('Product 5.1', 'http://i.imgur.com/t70eCC1.png'),
-				new Product('Product 5.2', 'http://i.imgur.com/t70eCC1.png'),
-				new Product('Product 5.3', 'http://i.imgur.com/t70eCC1.png')])
-		];
-
+	constructor(public navCtrl: NavController,
+				public database: DatabaseService)
+	{
+		this.categories   = this.database.categoriesFilled();
 		this.categoryName = this.categories[0].name;
 	}
 
 	slideChanged()
 	{
 		let currentIndex = this.slides.getActiveIndex();
-		if (currentIndex < this.categories.length) {
+
+		if (currentIndex < this.categories.length)
+		{
 			this.categoryName = this.categories[currentIndex].name;
 		}
 	}
