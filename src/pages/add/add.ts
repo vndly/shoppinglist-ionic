@@ -9,8 +9,8 @@ import { Product } from '../../app/models/product';
 	selector: 'page-add',
 	templateUrl: 'add.html'
 })
-export class AddPage {
-
+export class AddPage
+{
 	public categoryName: String = "";
 
 	public categories: [Category];
@@ -47,19 +47,22 @@ export class AddPage {
 		this.categoryName = this.categories[0].name;
 	}
 
-	slideChanged() {
+	slideChanged()
+	{
 		let currentIndex = this.slides.getActiveIndex();
 		if (currentIndex < this.categories.length) {
 			this.categoryName = this.categories[currentIndex].name;
 		}
 	}
 
-	addProduct(category: Category, product: Product) {
+	addProduct(category: Category, product: Product)
+	{
 		var elem = this.categories[this.categories.indexOf(category)];
 		elem.products.remove(product);
 	}
 
-	createProduct() {
+	createProduct()
+	{
 		this.navCtrl.push(CreatePage);
 	}
 }

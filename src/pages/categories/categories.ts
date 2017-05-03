@@ -2,36 +2,34 @@ import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { Category } from '../../app/models/category';
 import { ToastService } from '../../app/services/toast';
+import { DatabaseService } from '../../app/services/database';
 
 @Component({
 	selector: 'page-categories',
 	templateUrl: 'categories.html',
-	providers: [ToastService]
+	providers: [ToastService, DatabaseService]
 })
-export class CategoriesPage {
-
+export class CategoriesPage
+{
 	public categories: Category[];
 
-	constructor(public navCtrl: NavController, public alertCtrl: AlertController, public toast: ToastService) {
-
-		this.categories = [
-			new Category('Beverages'),
-			new Category('Bread & Grain Products'),
-			new Category('Condiments & Others'),
-			new Category('Frozen'),
-			new Category('Fruits & Vegetables'),
-			new Category('Household'),
-			new Category('Meat & Fish'),
-			new Category('Milk & Cheese')
-		];
+	constructor(public navCtrl: NavController,
+				public alertCtrl: AlertController,
+				public toast: ToastService,
+				public database: DatabaseService)
+	{
+		this.categories = this.database.categories();
 	}
 
-	createCategory() {
+	createCategory()
+	{
 		this.toast.show('CREATE CATEGORY')
 	}
 
-	editCategory(category: Category, item) {
-		let alert = this.alertCtrl.create({
+	editCategory(category: Category, item)
+	{
+		let alert = this.alertCtrl.create(
+		{
 			title: 'Login',
 			inputs: [
 				{
@@ -56,13 +54,15 @@ export class CategoriesPage {
 		alert.present();
 	}
 
-	renameCategory(category: Category, name: String) {
+	renameCategory(category: Category, name: String)
+	{
 		category.name = name;
 
 		this.toast.show('Category edited');
 	}
 
-	removeCategory(category: Category) {
+	removeCategory(category: Category)
+	{
 		let alert = this.alertCtrl.create({
 			title: 'Remove category',
 			message: "Do you want to remove <b>" + category.name + "</b>?",
@@ -82,11 +82,13 @@ export class CategoriesPage {
 		alert.present();
 	}
 
-	deleteCategory(category: Category) {
+	deleteCategory(category: Category)
+	{
 		this.categories.remove(category);
 	}
 
-	selectCategory(category: Category) {
+	selectCategory(category: Category)
+	{
 		this.navCtrl.pop();
 	}
 }

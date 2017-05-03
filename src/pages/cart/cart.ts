@@ -9,11 +9,12 @@ import { ToastService } from '../../app/services/toast';
 	templateUrl: 'cart.html',
 	providers: [ToastService]
 })
-export class CartPage {
-
+export class CartPage
+{
 	public cart: Item[];
 
-	constructor(public navCtrl: NavController, public alertCtrl: AlertController, public toast: ToastService) {
+	constructor(public navCtrl: NavController, public alertCtrl: AlertController, public toast: ToastService)
+	{
 
 		this.cart = [
 			new Item('Bread', 'http://i.imgur.com/t70eCC1.png', false),
@@ -31,28 +32,33 @@ export class CartPage {
 		];
 	}
 
-	shareCart() {
+	shareCart()
+	{
 		this.toast.show('SHARE CART');
 	}
 
-	toggleItem(item: Item) {
+	toggleItem(item: Item)
+	{
 		item.complete = !item.complete;
 
 		this.refreshItems();
 	}
 
-	private refreshItems() {
+	refreshItems()
+	{
 		var incompleted: Item[] = this.cart.filter((item: Item) => !item.complete);
 		var completed: Item[] = this.cart.filter((item: Item) => item.complete);
 
 		this.cart = incompleted.concat(completed);
 	}
 
-	addProduct() {
+	addProduct()
+	{
 		this.navCtrl.push(AddPage);
 	}
 
-	removeItem(item: Item) {
+	removeItem(item: Item)
+	{
 		let prompt = this.alertCtrl.create({
 			title: 'Remove "' + item.title + '" from cart?',
 			buttons: [
@@ -70,7 +76,8 @@ export class CartPage {
 		prompt.present();
 	}
 
-	removeItemFromCart(item: Item) {
+	removeItemFromCart(item: Item)
+	{
 		this.cart.remove(item);
 	}
 }

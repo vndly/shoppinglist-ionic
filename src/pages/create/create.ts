@@ -4,30 +4,24 @@ import { CategoriesPage } from '../categories/categories';
 import { Category } from '../../app/models/category';
 import { Product } from '../../app/models/product';
 import { ToastService } from '../../app/services/toast';
+import { DatabaseService } from '../../app/services/database';
 
 @Component({
 	selector: 'page-create',
 	templateUrl: 'create.html',
-	providers: [ToastService]
+	providers: [ToastService, DatabaseService]
 })
-export class CreatePage {
-
+export class CreatePage
+{
 	public imageUrl: String = "";
 	public categorySelected: Category;
-	public categories: [Category];
+	public categories: Category[];
 
-	constructor(public navCtrl: NavController, public toast: ToastService) {
-
-		this.categories = [
-			new Category('Beverages'),
-			new Category('Bread & Grain Products'),
-			new Category('Condiments & Others'),
-			new Category('Frozen'),
-			new Category('Fruits & Vegetables'),
-			new Category('Household'),
-			new Category('Meat & Fish'),
-			new Category('Milk & Cheese')
-		];
+	constructor(public navCtrl: NavController,
+				public toast: ToastService,
+				public database: DatabaseService)
+	{
+		this.categories = this.database.categories();
 	}
 
 	createProduct()

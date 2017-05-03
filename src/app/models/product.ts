@@ -1,5 +1,7 @@
-export class Product {
-    constructor(public title: String, public imageUrl: String){
+export class Product
+{
+    constructor(public title: String, public imageUrl: String)
+	{
     }
 
 	public static PRODUCT_BEER: Product = new Product('Beer', 'http://i.imgur.com/WmfEenJ.png');
