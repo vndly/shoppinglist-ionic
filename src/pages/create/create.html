@@ -3,6 +3,11 @@
 		<ion-title>
 			Create product
 		</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only (click)="manageCategories()">
+				<ion-icon name="ios-options"></ion-icon>
+			</button>
+		</ion-buttons>
 	</ion-navbar>
 </ion-header>
 
@@ -15,9 +20,8 @@
 		<ion-item>
 			<ion-label>Category</ion-label>
 			<ion-select [(ngModel)]="categorySelected" class="category-select" placeholder="Category">
-					<ion-option *ngFor="let category of categories" [value]="category" multiple="false">{{category.name}}</ion-option>
-				</ion-select>
-			<ion-icon style="margin-left:15px" name="ios-options" item-right (click)="manageCategories()"></ion-icon>
+				<ion-option *ngFor="let category of categories" multiple="false">{{category.name}}</ion-option>
+			</ion-select>
 		</ion-item>
 
 		<ion-list-header class="list-header">Name</ion-list-header>

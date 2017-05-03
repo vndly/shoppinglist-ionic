@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { CategoriesPage } from '../categories/categories';
 import { Category } from '../../app/models/category';
 import { Product } from '../../app/models/product';
 
@@ -16,14 +17,14 @@ export class CreatePage {
 	constructor(public navCtrl: NavController) {
 
 		this.categories = [
-			new Category('Beverages',  Product[0]),
-			new Category('Bread & Grain Products', Product[0]),
-			new Category('Condiments & Others', Product[0]),
-			new Category('Frozen', Product[0]),
-			new Category('Fruits & Vegetables', Product[0]),
-			new Category('Household', Product[0]),
-			new Category('Meat & Fish', Product[0]),
-			new Category('Milk & Cheese', Product[0])
+			new Category('Beverages'),
+			new Category('Bread & Grain Products'),
+			new Category('Condiments & Others'),
+			new Category('Frozen'),
+			new Category('Fruits & Vegetables'),
+			new Category('Household'),
+			new Category('Meat & Fish'),
+			new Category('Milk & Cheese')
 		];
 	}
 
@@ -34,6 +35,6 @@ export class CreatePage {
 
 	manageCategories()
 	{
-		alert('MANAGE CATEGORIES')
+		this.navCtrl.push(CategoriesPage);
 	}
 }

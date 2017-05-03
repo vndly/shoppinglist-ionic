@@ -4,13 +4,15 @@ import { MyApp } from './app.component';
 import { CartPage } from '../pages/cart/cart';
 import { AddPage } from '../pages/add/add';
 import { CreatePage } from '../pages/create/create';
+import { CategoriesPage } from '../pages/categories/categories';
 
 @NgModule({
 	declarations: [
 		MyApp,
 		CartPage,
 		AddPage,
-		CreatePage
+		CreatePage,
+		CategoriesPage
 	],
 	imports: [
 		IonicModule.forRoot(MyApp)
@@ -20,7 +22,8 @@ import { CreatePage } from '../pages/create/create';
 		MyApp,
 		CartPage,
 		AddPage,
-		CreatePage
+		CreatePage,
+		CategoriesPage
 	],
 	providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }]
 })
