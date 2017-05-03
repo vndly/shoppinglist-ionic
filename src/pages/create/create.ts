@@ -31,4 +31,9 @@ export class CreatePage {
 	{
 		alert('CREATE PRODUCT')
 	}
+
+	manageCategories()
+	{
+		alert('MANAGE CATEGORIES')
+	}
 }
