@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, ToastController } from 'ionic-angular';
 import { Category } from '../../app/models/category';
 
 @Component({
@@ -10,7 +10,7 @@ export class CategoriesPage {
 
 	public categories: Category[];
 
-	constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
+	constructor(public navCtrl: NavController, public alertCtrl: AlertController, public toastCtrl: ToastController) {
 
 		this.categories = [
 			new Category('Beverages'),
@@ -56,6 +56,13 @@ export class CategoriesPage {
 
 	renameCategory(category: Category, name: String) {
 		category.name = name;
+
+		let toast = this.toastCtrl.create({
+			message: 'Category edited',
+			duration: 3000,
+			position: 'bottom'
+		});
+		toast.present();
 	}
 
 	removeCategory(category: Category) {
