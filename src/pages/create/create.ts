@@ -3,10 +3,12 @@ import { NavController } from 'ionic-angular';
 import { CategoriesPage } from '../categories/categories';
 import { Category } from '../../app/models/category';
 import { Product } from '../../app/models/product';
+import { ToastService } from '../../app/services/toast';
 
 @Component({
 	selector: 'page-create',
-	templateUrl: 'create.html'
+	templateUrl: 'create.html',
+	providers: [ToastService]
 })
 export class CreatePage {
 
@@ -14,7 +16,7 @@ export class CreatePage {
 	public categorySelected: Category;
 	public categories: [Category];
 
-	constructor(public navCtrl: NavController) {
+	constructor(public navCtrl: NavController, public toast: ToastService) {
 
 		this.categories = [
 			new Category('Beverages'),
@@ -30,7 +32,7 @@ export class CreatePage {
 
 	createProduct()
 	{
-		alert('CREATE PRODUCT')
+		this.toast.show('CREATE PRODUCT')
 	}
 
 	manageCategories()

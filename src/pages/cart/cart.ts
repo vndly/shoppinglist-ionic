@@ -2,16 +2,18 @@ import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { AddPage } from '../add/add';
 import { Item } from '../../app/models/item';
+import { ToastService } from '../../app/services/toast';
 
 @Component({
 	selector: 'page-cart',
-	templateUrl: 'cart.html'
+	templateUrl: 'cart.html',
+	providers: [ToastService]
 })
 export class CartPage {
 
 	public cart: Item[];
 
-	constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
+	constructor(public navCtrl: NavController, public alertCtrl: AlertController, public toast: ToastService) {
 
 		this.cart = [
 			new Item('Bread', 'http://i.imgur.com/t70eCC1.png', false),
@@ -30,7 +32,7 @@ export class CartPage {
 	}
 
 	shareCart() {
-		alert('SHARE CART');
+		this.toast.show('SHARE CART');
 	}
 
 	toggleItem(item: Item) {

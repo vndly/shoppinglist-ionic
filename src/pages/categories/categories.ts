@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, ToastController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { Category } from '../../app/models/category';
+import { ToastService } from '../../app/services/toast';
 
 @Component({
 	selector: 'page-categories',
-	templateUrl: 'categories.html'
+	templateUrl: 'categories.html',
+	providers: [ToastService]
 })
 export class CategoriesPage {
 
 	public categories: Category[];
 
-	constructor(public navCtrl: NavController, public alertCtrl: AlertController, public toastCtrl: ToastController) {
+	constructor(public navCtrl: NavController, public alertCtrl: AlertController, public toast: ToastService) {
 
 		this.categories = [
 			new Category('Beverages'),
@@ -25,7 +27,7 @@ export class CategoriesPage {
 	}
 
 	createCategory() {
-		alert('CREATE CATEGORY')
+		this.toast.show('CREATE CATEGORY')
 	}
 
 	editCategory(category: Category, item) {
@@ -57,12 +59,7 @@ export class CategoriesPage {
 	renameCategory(category: Category, name: String) {
 		category.name = name;
 
-		let toast = this.toastCtrl.create({
-			message: 'Category edited',
-			duration: 3000,
-			position: 'bottom'
-		});
-		toast.present();
+		this.toast.show('Category edited');
 	}
 
 	removeCategory(category: Category) {
