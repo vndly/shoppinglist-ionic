@@ -14,14 +14,14 @@
 <ion-content>
 	<ion-list>
 
-		<ion-item-sliding *ngFor="let category of categories">
+		<ion-item-sliding #item *ngFor="let category of categories">
 
 			<ion-item (click)="selectCategory(category)">
 				{{category.name}}
 			</ion-item>
 
 			<ion-item-options>
-				<button ion-button icon-only (click)="editCategory(category)" color="primary">
+				<button ion-button icon-only (click)="editCategory(category, item)" color="primary">
                     <ion-icon name="ios-create-outline"></ion-icon>
                 </button>
 				<button ion-button icon-only (click)="removeCategory(category)" color="danger">

@@ -28,12 +28,58 @@ export class CategoriesPage {
 		alert('CREATE CATEGORY')
 	}
 
-	editCategory(category: Category) {
-		alert('EDIT CATEGORY: ' + category.name)
+	editCategory(category: Category, item) {
+		let alert = this.alertCtrl.create({
+			title: 'Login',
+			inputs: [
+				{
+					name: 'name',
+					value: "" + category.name
+				}
+			],
+			buttons: [
+				{
+					text: 'Cancel',
+					role: 'cancel'
+				},
+				{
+					text: 'Rename',
+					handler: data => {
+						item.close();
+						this.renameCategory(category, data.name);
+					}
+				}
+			]
+		});
+		alert.present();
+	}
+
+	renameCategory(category: Category, name: String) {
+		category.name = name;
 	}
 
 	removeCategory(category: Category) {
-		alert('REMOVE CATEGORY: ' + category.name)
+		let alert = this.alertCtrl.create({
+			title: 'Remove category',
+			message: "Do you want to remove <b>" + category.name + "</b>?",
+			buttons: [
+				{
+					text: 'Cancel',
+					role: 'cancel'
+				},
+				{
+					text: 'Delete',
+					handler: () => {
+						this.deleteCategory(category);
+					}
+				}
+			]
+		});
+		alert.present();
+	}
+
+	deleteCategory(category: Category) {
+		this.categories.remove(category);
 	}
 
 	selectCategory(category: Category) {
