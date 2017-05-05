@@ -17,7 +17,7 @@
 		<div style="text-align: center">{{categoryName}}</div>
 	</ion-list-header>
 
-	<ion-slides (ionSlideDidChange)="slideChanged()">
+	<ion-slides (ionSlideDidChange)="slideChanged()" style="height: auto">
 		
 		<ion-slide *ngFor="let category of categories" class="category-slide">
 			
