@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CategoriesPage } from '../categories/categories';
 import { Category } from '../../app/models/category';
-import { Product } from '../../app/models/product';
 import { ToastService } from '../../app/services/toast';
 import { DatabaseService } from '../../app/services/database';
 

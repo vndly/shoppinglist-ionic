@@ -19,7 +19,7 @@
 
 		<ion-item-sliding *ngFor="let item of items">
 
-			<ion-item (click)="toggleItem(item)">
+			<ion-item (click)="toggleItem(item)" [class.row-completed]="item.completed">
 				<ion-thumbnail item-left>
 						<img src="{{item.product.image}}">
 				</ion-thumbnail>
