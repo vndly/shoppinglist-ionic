@@ -13,7 +13,7 @@ import { DatabaseService } from '../../app/services/database';
 })
 export class CreatePage
 {
-	public imageUrl: String = "";
+	public image: String = "";
 	public categorySelected: Category;
 	public categories: Category[];
 

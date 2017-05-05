@@ -23,12 +23,12 @@
 			
 			<ion-list>
 				
-				<ion-item *ngFor="let product of category.products" (click)="addProduct(category, product)">
+				<ion-item *ngFor="let product of products | productFilter:category" (click)="addProduct(product)">
 					
 					<ion-thumbnail item-left>
-							<img src="{{product.imageUrl}}">
+							<img src="{{product.image}}">
 					</ion-thumbnail>
-					{{product.title}}
+					{{product.name}}
 					
 				</ion-item>
 

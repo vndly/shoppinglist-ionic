@@ -5,6 +5,7 @@ import { CartPage } from '../pages/cart/cart';
 import { AddPage } from '../pages/add/add';
 import { CreatePage } from '../pages/create/create';
 import { CategoriesPage } from '../pages/categories/categories';
+import { ProductFilter } from '../app/filters/productFilter';
 
 @NgModule({
 	declarations: [
@@ -12,7 +13,8 @@ import { CategoriesPage } from '../pages/categories/categories';
 		CartPage,
 		AddPage,
 		CreatePage,
-		CategoriesPage
+		CategoriesPage,
+		ProductFilter
 	],
 	imports: [
 		IonicModule.forRoot(MyApp)

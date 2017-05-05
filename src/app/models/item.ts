@@ -1,6 +1,8 @@
+import { Product } from './product';
+
 export class Item
 {
-    constructor(public title: String, public imageUrl: String, public complete: Boolean)
+    constructor(public product: Product, public completed: Boolean)
 	{
     }
 }

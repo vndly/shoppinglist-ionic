@@ -16,13 +16,15 @@ export class AddPage
 	public categoryName: String = "";
 
 	public categories: Category[];
+	public products: Product[];
 
 	@ViewChild(Slides) slides: Slides;
 
 	constructor(public navCtrl: NavController,
 				public database: DatabaseService)
 	{
-		this.categories   = this.database.categoriesFilled();
+		this.categories   = this.database.categories();
+		this.products     = this.database.products();
 		this.categoryName = this.categories[0].name;
 	}
 
@@ -36,10 +38,9 @@ export class AddPage
 		}
 	}
 
-	addProduct(category: Category, product: Product)
+	addProduct(product: Product)
 	{
-		var elem = this.categories[this.categories.indexOf(category)];
-		elem.products.remove(product);
+		this.products.remove(product);
 	}
 
 	createProduct()

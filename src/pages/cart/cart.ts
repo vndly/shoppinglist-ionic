@@ -12,14 +12,14 @@ import { DatabaseService } from '../../app/services/database';
 })
 export class CartPage
 {
-	public cart: Item[];
+	public items: Item[];
 
 	constructor(public navCtrl: NavController,
 				public alertCtrl: AlertController,
 				public toast: ToastService,
 				public databsae: DatabaseService)
 	{
-		this.cart = this.databsae.items();
+		this.items = this.databsae.items();
 	}
 
 	shareCart()
@@ -29,17 +29,17 @@ export class CartPage
 
 	toggleItem(item: Item)
 	{
-		item.complete = !item.complete;
+		item.completed = !item.completed;
 
 		this.refreshItems();
 	}
 
 	refreshItems()
 	{
-		var incompleted: Item[] = this.cart.filter((item: Item) => !item.complete);
-		var completed: Item[] = this.cart.filter((item: Item) => item.complete);
+		var incompleted: Item[] = this.items.filter((item: Item) => !item.completed);
+		var completed: Item[] = this.items.filter((item: Item) => item.completed);
 
-		this.cart = incompleted.concat(completed);
+		this.items = incompleted.concat(completed);
 	}
 
 	addProduct()
@@ -51,7 +51,7 @@ export class CartPage
 	{
 		let prompt = this.alertCtrl.create(
 		{
-			title: 'Remove "' + item.title + '" from cart?',
+			title: 'Remove "' + item.product.name + '" from cart?',
 			buttons: [
 				{
 					text: 'Cancel'
@@ -69,6 +69,6 @@ export class CartPage
 
 	removeItemFromCart(item: Item)
 	{
-		this.cart.remove(item);
+		this.items.remove(item);
 	}
 }
