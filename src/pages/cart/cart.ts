@@ -13,13 +13,13 @@ import { DatabaseService } from '../../app/services/database'
 })
 export class CartPage
 {
-	public items: Item[]
+	private items: Item[]
 
-	constructor(public navCtrl: NavController,
-				public socialSharing: SocialSharing,
-				public toast: ToastService,
-				public dialog: DialogService,
-				public databsae: DatabaseService)
+	constructor(private navCtrl: NavController,
+				private socialSharing: SocialSharing,
+				private toast: ToastService,
+				private dialog: DialogService,
+				private databsae: DatabaseService)
 	{
 		this.refreshItems()
 	}
@@ -72,6 +72,11 @@ export class CartPage
 	private removeItemFromCart(item: Item)
 	{
 		this.databsae.removeItem(item)
+		this.refreshItems()
+	}
+
+	public ionViewWillEnter()
+	{
 		this.refreshItems()
 	}
 }

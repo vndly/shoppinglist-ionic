@@ -108,6 +108,8 @@ export class DatabaseService
 		]
 	}
 
+	// -------------------------------------------------------------
+
 	public categories(): Category[]
 	{
 		return this.categoriesList.sort((c1, c2) => c1.name.localeCompare(c2.name))
@@ -122,11 +124,22 @@ export class DatabaseService
 
 	public items(): Item[]
 	{
-		return this.itemsList.sort((i1, i2) => i1.product.name.localeCompare(i2.product.name));;
+		return this.itemsList.sort((i1, i2) => i1.product.name.localeCompare(i2.product.name))
 	}
+
+	// -------------------------------------------------------------
 
 	public removeItem(item: Item)
 	{
-		return this.itemsList.remove(item);
+		return this.itemsList.remove(item)
+
+		// TODO: update database
+	}
+
+	public addItem(product: Product)
+	{
+		this.itemsList.push(new Item(product, false))
+
+		// TODO: update database
 	}
 }

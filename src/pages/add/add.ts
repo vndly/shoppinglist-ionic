@@ -74,6 +74,8 @@ export class AddPage
 	private addProduct(product: Product)
 	{
 		this.products.remove(product)
+
+		this.database.addItem(product)
 	}
 
 	private editProduct(product: Product)
