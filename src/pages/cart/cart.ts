@@ -1,50 +1,58 @@
-import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
-import { AddPage } from '../add/add';
-import { Item } from '../../app/models/item';
-import { ToastService } from '../../app/services/toast';
-import { DatabaseService } from '../../app/services/database';
+import { Component } from '@angular/core'
+import { NavController, AlertController } from 'ionic-angular'
+import { SocialSharing } from '@ionic-native/social-sharing'
+import { AddPage } from '../add/add'
+import { Item } from '../../app/models/item'
+import { ToastService } from '../../app/services/toast'
+import { DatabaseService } from '../../app/services/database'
 
 @Component({
 	selector: 'page-cart',
 	templateUrl: 'cart.html',
-	providers: [ToastService, DatabaseService]
+	providers: [ToastService, DatabaseService, SocialSharing]
 })
 export class CartPage
 {
-	public items: Item[];
+	public items: Item[]
 
 	constructor(public navCtrl: NavController,
+				public socialSharing: SocialSharing,
 				public alertCtrl: AlertController,
 				public toast: ToastService,
 				public databsae: DatabaseService)
 	{
-		this.items = this.databsae.items();
+		this.items = this.databsae.items()
 	}
 
 	shareCart()
 	{
-		this.toast.show('SHARE CART');
+		let message = ""
+
+		for (let item of this.items) {
+			message += item.product.name + "\n"	
+		}
+
+		this.socialSharing.share(message)
 	}
 
 	toggleItem(item: Item)
 	{
-		item.completed = !item.completed;
+		item.completed = !item.completed
 
-		this.refreshItems();
+		this.refreshItems()
 	}
 
 	refreshItems()
 	{
-		var incompleted: Item[] = this.items.filter((item: Item) => !item.completed);
-		var completed: Item[] = this.items.filter((item: Item) => item.completed);
+		var incompleted: Item[] = this.items.filter((item: Item) => !item.completed)
+		var completed: Item[] = this.items.filter((item: Item) => item.completed)
 
-		this.items = incompleted.concat(completed);
+		this.items = incompleted.concat(completed)
 	}
 
 	addProduct()
 	{
-		this.navCtrl.push(AddPage);
+		this.navCtrl.push(AddPage)
 	}
 
 	removeItem(item: Item)
@@ -59,16 +67,16 @@ export class CartPage
 				{
 					text: 'Remove',
 					handler: data => {
-						this.removeItemFromCart(item);
+						this.removeItemFromCart(item)
 					}
 				}
 			]
-		});
-		prompt.present();
+		})
+		prompt.present()
 	}
 
 	removeItemFromCart(item: Item)
 	{
-		this.items.remove(item);
+		this.items.remove(item)
 	}
 }

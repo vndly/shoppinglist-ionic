@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { ToastController } from 'ionic-angular';
+import { Injectable } from '@angular/core'
+import { ToastController } from 'ionic-angular'
 
 @Injectable()
 export class ToastService
@@ -14,7 +14,7 @@ export class ToastService
 			message: "" + text,
 			duration: 3000,
 			position: 'bottom'
-		});
-		toast.present();
+		})
+		toast.present()
 	}
 }

@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Category } from '../models/category';
-import { Product } from '../models/product';
-import { Item } from '../models/item';
+import { Injectable } from '@angular/core'
+import { Category } from '../models/category'
+import { Product } from '../models/product'
+import { Item } from '../models/item'
 
 @Injectable()
 export class DatabaseService {
@@ -18,7 +18,7 @@ export class DatabaseService {
 			Category.CATEGORY_HOUSEHOLD,
 			Category.CATEGORY_MEAT_AND_FISH,
 			Category.CATEGORY_MILK_AND_CHEESE
-		];
+		]
 	}
 
 	products(): Product[] {
@@ -91,7 +91,7 @@ export class DatabaseService {
 			Product.PRODUCT_GRATED_CHEESE,
 			Product.PRODUCT_MILK,
 			Product.PRODUCT_YOGURT
-		];
+		]
 	}
 
 	items(): Item[] {
@@ -112,6 +112,6 @@ export class DatabaseService {
 			new Item(Product.PRODUCT_MEAT, false),
 			new Item(Product.PRODUCT_YOGURT, false),
 			new Item(Product.PRODUCT_PIZZA, false)
-		];
+		]
 	}
 }

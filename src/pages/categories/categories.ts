@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
-import { Category } from '../../app/models/category';
-import { ToastService } from '../../app/services/toast';
-import { DatabaseService } from '../../app/services/database';
+import { Component } from '@angular/core'
+import { NavController, AlertController } from 'ionic-angular'
+import { Category } from '../../app/models/category'
+import { ToastService } from '../../app/services/toast'
+import { DatabaseService } from '../../app/services/database'
 
 @Component({
 	selector: 'page-categories',
@@ -11,14 +11,14 @@ import { DatabaseService } from '../../app/services/database';
 })
 export class CategoriesPage
 {
-	public categories: Category[];
+	public categories: Category[]
 
 	constructor(public navCtrl: NavController,
 				public alertCtrl: AlertController,
 				public toast: ToastService,
 				public database: DatabaseService)
 	{
-		this.categories = this.database.categories();
+		this.categories = this.database.categories()
 	}
 
 	createCategory()
@@ -45,20 +45,20 @@ export class CategoriesPage
 				{
 					text: 'Rename',
 					handler: data => {
-						item.close();
-						this.renameCategory(category, data.name);
+						item.close()
+						this.renameCategory(category, data.name)
 					}
 				}
 			]
-		});
-		alert.present();
+		})
+		alert.present()
 	}
 
 	renameCategory(category: Category, name: String)
 	{
-		category.name = name;
+		category.name = name
 
-		this.toast.show('Category edited');
+		this.toast.show('Category edited')
 	}
 
 	removeCategory(category: Category)
@@ -75,21 +75,21 @@ export class CategoriesPage
 				{
 					text: 'Delete',
 					handler: () => {
-						this.deleteCategory(category);
+						this.deleteCategory(category)
 					}
 				}
 			]
-		});
-		alert.present();
+		})
+		alert.present()
 	}
 
 	deleteCategory(category: Category)
 	{
-		this.categories.remove(category);
+		this.categories.remove(category)
 	}
 
 	selectCategory(category: Category)
 	{
-		this.navCtrl.pop();
+		this.navCtrl.pop()
 	}
 }
