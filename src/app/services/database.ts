@@ -142,4 +142,13 @@ export class DatabaseService
 
 		// TODO: update database
 	}
+
+	// -------------------------------------------------------------
+
+	public removeProduct(product: Product)
+	{
+		return this.productsList.remove(product)
+
+		// TODO: update database
+	}
 }

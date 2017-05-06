@@ -14,17 +14,17 @@ import { DatabaseService } from '../../app/services/database'
 })
 export class AddPage
 {
-	public categoryName: string = ''
-	public categories: Category[]
-	public products: Product[]
+	private categoryName: string = ''
+	private categories: Category[]
+	private products: Product[]
 
 	@ViewChild(Slides) slides: Slides
 
-	constructor(public navCtrl: NavController,
-				public actionSheetCtrl: ActionSheetController,
-				public toast: ToastService,
-				public dialog: DialogService,
-				public database: DatabaseService)
+	constructor(private navCtrl: NavController,
+				private actionSheetCtrl: ActionSheetController,
+				private toast: ToastService,
+				private dialog: DialogService,
+				private database: DatabaseService)
 	{
 		this.categories   = this.database.categories()
 		this.products     = this.database.products()
@@ -73,14 +73,20 @@ export class AddPage
 
 	private addProduct(product: Product)
 	{
-		this.products.remove(product)
-
 		this.database.addItem(product)
+		this.refreshProducts()
+	}
+
+	private refreshProducts()
+	{
+		this.products = this.database.products()
 	}
 
 	private editProduct(product: Product)
 	{
+		// TODO
 		this.toast.show('EDIT: ' + product.name)
+		this.navCtrl.push(CreatePage)
 	}
 
 	private removeProduct(product: Product)
@@ -96,11 +102,17 @@ export class AddPage
 
 	private deleteProduct(product: Product)
 	{
-		this.toast.show('DELETE: ' + product.name)
+		this.database.removeProduct(product)
+		this.refreshProducts()
 	}
 
 	private createProduct()
 	{
 		this.navCtrl.push(CreatePage)
+	}
+
+	public ionViewWillEnter()
+	{
+		this.refreshProducts()
 	}
 }
