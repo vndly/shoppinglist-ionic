@@ -8,7 +8,7 @@ export class ToastService
 	{
 	}
 
-	show(text)
+	public show(text)
 	{
 		let toast = this.toastCtrl.create({
 			message: '' + text,

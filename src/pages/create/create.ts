@@ -22,12 +22,12 @@ export class CreatePage
 		this.categories = this.database.categories()
 	}
 
-	createProduct()
+	private createProduct()
 	{
 		this.toast.show('CREATE PRODUCT')
 	}
 
-	manageCategories()
+	private manageCategories()
 	{
 		this.navCtrl.push(CategoriesPage)
 	}

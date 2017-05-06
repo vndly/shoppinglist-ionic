@@ -8,7 +8,7 @@ export class DialogService
 	{
 	}
 
-	confirmation(message: string, button: string, callback: () => any)
+	public confirmation(message: string, button: string, callback: () => any)
 	{
 		let prompt = this.alertCtrl.create(
 		{
@@ -28,7 +28,7 @@ export class DialogService
 		prompt.present()
 	}
 
-	prompt(title: string, inputs, button: string, callback: (data) => any)
+	public prompt(title: string, inputs, button: string, callback: (data) => any)
 	{
 		let prompt = this.alertCtrl.create(
 		{

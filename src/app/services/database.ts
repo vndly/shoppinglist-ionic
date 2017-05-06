@@ -4,12 +4,15 @@ import { Product } from '../models/product'
 import { Item } from '../models/item'
 
 @Injectable()
-export class DatabaseService {
-	constructor() {
-	}
+export class DatabaseService
+{
+	private categoriesList: Category[]
+	private productsList: Product[]
+	private itemsList: Item[]
 
-	categories(): Category[] {
-		return [
+	constructor()
+	{
+		this.categoriesList = [
 			Category.CATEGORY_BEVERAGES,
 			Category.CATEGORY_BREAD_AND_GRAIN_PRODUCTS,
 			Category.CATEGORY_CONDIMENTS_AND_OTHERS,
@@ -18,11 +21,9 @@ export class DatabaseService {
 			Category.CATEGORY_HOUSEHOLD,
 			Category.CATEGORY_MEAT_AND_FISH,
 			Category.CATEGORY_MILK_AND_CHEESE
-		]
-	}
+		];
 
-	products(): Product[] {
-		return [
+		this.productsList = [
 			Product.PRODUCT_BEER,
 			Product.PRODUCT_COFFEE,
 			Product.PRODUCT_SODA,
@@ -92,10 +93,8 @@ export class DatabaseService {
 			Product.PRODUCT_MILK,
 			Product.PRODUCT_YOGURT
 		]
-	}
 
-	items(): Item[] {
-		return [
+		this.itemsList = [
 			new Item(Product.PRODUCT_AIR_FRESHENER, false),
 			new Item(Product.PRODUCT_BANANAS, false),
 			new Item(Product.PRODUCT_CEREALS, false),
@@ -113,5 +112,25 @@ export class DatabaseService {
 			new Item(Product.PRODUCT_YOGURT, false),
 			new Item(Product.PRODUCT_PIZZA, false)
 		]
+	}
+
+	public categories(): Category[]
+	{
+		return this.categoriesList;
+	}
+
+	public products(): Product[]
+	{
+		return this.productsList;
+	}
+
+	public items(): Item[]
+	{
+		return this.itemsList;
+	}
+
+	public removeItem(item: Item)
+	{
+		return this.itemsList.remove(item);
 	}
 }

@@ -31,7 +31,7 @@ export class AddPage
 		this.categoryName = this.categories[0].name
 	}
 
-	slideChanged()
+	private slideChanged()
 	{
 		let currentIndex = this.slides.getActiveIndex()
 
@@ -41,7 +41,7 @@ export class AddPage
 		}
 	}
 
-	showProductOptions(product: Product, $event)
+	private showProductOptions(product: Product, $event)
 	{
 		$event.stopPropagation()
 
@@ -71,17 +71,17 @@ export class AddPage
 		actionSheet.present()
 	}
 
-	addProduct(product: Product)
+	private addProduct(product: Product)
 	{
 		this.products.remove(product)
 	}
 
-	editProduct(product: Product)
+	private editProduct(product: Product)
 	{
 		this.toast.show('EDIT: ' + product.name)
 	}
 
-	removeProduct(product: Product)
+	private removeProduct(product: Product)
 	{
 		this.dialog.confirmation(
 			'Do you want to remove <b>' + product.name + '</b>?',
@@ -92,12 +92,12 @@ export class AddPage
 		)
 	}
 
-	deleteProduct(product: Product)
+	private deleteProduct(product: Product)
 	{
 		this.toast.show('DELETE: ' + product.name)
 	}
 
-	createProduct()
+	private createProduct()
 	{
 		this.navCtrl.push(CreatePage)
 	}

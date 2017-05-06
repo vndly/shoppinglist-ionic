@@ -7,9 +7,10 @@ import { Category } from '../models/category'
 })
 export class ProductFilter implements PipeTransform
 {
-	transform(products: any[], category: Category): any
+	public transform(products: any[], category: Category): any
 	{
-		if (!products || !category) {
+		if (!products || !category)
+		{
 			return products
 		}
 		

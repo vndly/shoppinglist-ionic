@@ -21,41 +21,44 @@ export class CartPage
 				public dialog: DialogService,
 				public databsae: DatabaseService)
 	{
-		this.items = this.databsae.items()
+		this.refreshItems()
 	}
 
-	shareCart()
+	private shareCart()
 	{
 		let message = ''
 
-		for (let item of this.items) {
+		for (let item of this.items)
+		{
 			message += item.product.name + '\n'
 		}
 
 		this.socialSharing.share(message)
 	}
 
-	toggleItem(item: Item)
+	private toggleItem(item: Item)
 	{
 		item.completed = !item.completed
 
 		this.refreshItems()
 	}
 
-	refreshItems()
+	private refreshItems()
 	{
-		var incompleted: Item[] = this.items.filter((item: Item) => !item.completed)
-		var completed: Item[] = this.items.filter((item: Item) => item.completed)
+		let itemList = this.databsae.items()
+
+		var incompleted: Item[] = itemList.filter((item: Item) => !item.completed)
+		var completed: Item[] = itemList.filter((item: Item) => item.completed)
 
 		this.items = incompleted.concat(completed)
 	}
 
-	addProduct()
+	private addProduct()
 	{
 		this.navCtrl.push(AddPage)
 	}
 
-	removeItem(item: Item)
+	private removeItem(item: Item)
 	{
 		this.dialog.confirmation(
 			'Do you want to remove <b>' + item.product.name + '</b> from the cart?',
@@ -66,8 +69,9 @@ export class CartPage
 		)
 	}
 
-	removeItemFromCart(item: Item)
+	private removeItemFromCart(item: Item)
 	{
-		this.items.remove(item)
+		this.databsae.removeItem(item)
+		this.refreshItems()
 	}
 }
