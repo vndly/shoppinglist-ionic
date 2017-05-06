@@ -12,7 +12,7 @@ import { DatabaseService } from '../../app/services/database'
 })
 export class CreatePage
 {
-	public image: String = ""
+	public image: String = ''
 	public categorySelected: Category
 	public categories: Category[]
 

@@ -26,10 +26,10 @@ export class CartPage
 
 	shareCart()
 	{
-		let message = ""
+		let message = ''
 
 		for (let item of this.items) {
-			message += item.product.name + "\n"	
+			message += item.product.name + '\n'
 		}
 
 		this.socialSharing.share(message)
@@ -59,7 +59,7 @@ export class CartPage
 	{
 		let prompt = this.alertCtrl.create(
 		{
-			title: 'Remove "' + item.product.name + '" from cart?',
+			message: 'Do you want to remove <b>' + item.product.name + '</b> from the cart?',
 			buttons: [
 				{
 					text: 'Cancel'

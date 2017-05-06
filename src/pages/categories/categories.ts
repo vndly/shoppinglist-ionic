@@ -30,11 +30,11 @@ export class CategoriesPage
 	{
 		let alert = this.alertCtrl.create(
 		{
-			title: 'Login',
+			title: 'Rename',
 			inputs: [
 				{
 					name: 'name',
-					value: "" + category.name
+					value: '' + category.name
 				}
 			],
 			buttons: [
@@ -65,8 +65,7 @@ export class CategoriesPage
 	{
 		let alert = this.alertCtrl.create(
 		{
-			title: 'Remove category',
-			message: "Do you want to remove <b>" + category.name + "</b>?",
+			title: 'Do you want to remove <b>' + category.name + '</b>?',
 			buttons: [
 				{
 					text: 'Cancel',

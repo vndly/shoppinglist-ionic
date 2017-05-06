@@ -11,7 +11,7 @@ export class ToastService
 	show(text)
 	{
 		let toast = this.toastCtrl.create({
-			message: "" + text,
+			message: '' + text,
 			duration: 3000,
 			position: 'bottom'
 		})
