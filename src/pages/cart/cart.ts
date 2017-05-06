@@ -19,7 +19,7 @@ export class CartPage
 				private socialSharing: SocialSharing,
 				private toast: ToastService,
 				private dialog: DialogService,
-				private databsae: DatabaseService)
+				private database: DatabaseService)
 	{
 		this.refreshItems()
 	}
@@ -45,7 +45,7 @@ export class CartPage
 
 	private refreshItems()
 	{
-		let itemList = this.databsae.items()
+		let itemList = this.database.items()
 
 		var incompleted: Item[] = itemList.filter((item: Item) => !item.completed)
 		var completed: Item[] = itemList.filter((item: Item) => item.completed)
@@ -71,7 +71,7 @@ export class CartPage
 
 	private removeItemFromCart(item: Item)
 	{
-		this.databsae.removeItem(item)
+		this.database.removeItem(item)
 		this.refreshItems()
 	}
 

@@ -11,12 +11,12 @@ import { DatabaseService } from '../../app/services/database'
 })
 export class CategoriesPage
 {
-	public categories: Category[]
+	private categories: Category[]
 
-	constructor(public navCtrl: NavController,
-				public toast: ToastService,
-				public dialog: DialogService,
-				public database: DatabaseService)
+	constructor(private navCtrl: NavController,
+				private toast: ToastService,
+				private dialog: DialogService,
+				private database: DatabaseService)
 	{
 		this.categories = this.database.categories()
 	}
@@ -46,9 +46,8 @@ export class CategoriesPage
 
 	private renameCategory(category: Category, name: string)
 	{
-		category.name = name
-
-		this.toast.show('Category edited')
+		this.database.renameCategory(category, name)
+		this.refreshCategories()
 	}
 
 	public removeCategory(category: Category)
@@ -64,11 +63,23 @@ export class CategoriesPage
 
 	private deleteCategory(category: Category)
 	{
-		this.categories.remove(category)
+		this.database.removeCategory(category)
+		this.refreshCategories()
 	}
 
 	public selectCategory(category: Category)
 	{
+		// TODO: select category in previous screen
 		this.navCtrl.pop()
+	}
+
+	private refreshCategories()
+	{
+		this.categories = this.database.categories()
+	}
+
+	public ionViewWillEnter()
+	{
+		this.refreshCategories()
 	}
 }

@@ -129,6 +129,33 @@ export class DatabaseService
 
 	// -------------------------------------------------------------
 
+	public renameCategory(category: Category, name: string)
+	{
+		// TODO: check if no other category with that name
+
+		category.name = name
+
+		// TODO: update database
+	}
+
+	public removeCategory(category: Category)
+	{
+		// TODO: check if category is not empty
+
+		this.categoriesList.remove(category)
+	}
+
+	// -------------------------------------------------------------
+
+	public removeProduct(product: Product)
+	{
+		return this.productsList.remove(product)
+
+		// TODO: update database
+	}
+
+	// -------------------------------------------------------------
+
 	public removeItem(item: Item)
 	{
 		return this.itemsList.remove(item)
@@ -139,15 +166,6 @@ export class DatabaseService
 	public addItem(product: Product)
 	{
 		this.itemsList.push(new Item(product, false))
-
-		// TODO: update database
-	}
-
-	// -------------------------------------------------------------
-
-	public removeProduct(product: Product)
-	{
-		return this.productsList.remove(product)
 
 		// TODO: update database
 	}
