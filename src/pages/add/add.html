@@ -28,8 +28,10 @@
 					<ion-thumbnail item-left>
 							<img src="{{product.image}}">
 					</ion-thumbnail>
+					
 					{{product.name}}
-					<ion-icon name="ios-create-outline" (click)="showProductOptions(product)" item-right></ion-icon>
+
+					<ion-icon name="ios-create-outline" (click)="showProductOptions(product, $event)" item-right></ion-icon>
 					
 				</ion-item>
 

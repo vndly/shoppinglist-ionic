@@ -42,8 +42,10 @@ export class AddPage
 		}
 	}
 
-	showProductOptions(product: Product)
+	showProductOptions(product: Product, $event)
 	{
+		$event.stopPropagation();
+
 		let actionSheet = this.actionSheetCtrl.create(
 		{
 			title: product.name,

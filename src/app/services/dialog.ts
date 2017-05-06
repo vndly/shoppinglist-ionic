@@ -32,19 +32,6 @@ export class DialogService
 	{
 		let prompt = this.alertCtrl.create(
 		{
-			/*message: message,
-			buttons: [
-				{
-					text: 'Cancel'
-				},
-				{
-					text: button,
-					handler: () => {
-						callback()
-					}
-				}
-			]*/
-
 			title: title,
 			inputs: inputs,
 			buttons: [
