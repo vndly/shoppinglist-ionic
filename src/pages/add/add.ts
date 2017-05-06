@@ -5,26 +5,27 @@ import { Slides } from 'ionic-angular'
 import { Category } from '../../app/models/category'
 import { Product } from '../../app/models/product'
 import { ToastService } from '../../app/services/toast'
+import { DialogService } from '../../app/services/dialog'
 import { DatabaseService } from '../../app/services/database'
 
 @Component({
 	selector: 'page-add',
 	templateUrl: 'add.html',
-	providers: [ToastService, DatabaseService]
+	providers: [ToastService, DialogService, DatabaseService]
 })
 export class AddPage
 {
-	public categoryName: String = ''
+	public categoryName: string = ''
 	public categories: Category[]
 	public products: Product[]
 
 	@ViewChild(Slides) slides: Slides
 
 	constructor(public navCtrl: NavController,
-				public alertCtrl: AlertController,
 				public actionSheetCtrl: ActionSheetController,
-				public database: DatabaseService,
-				public toast: ToastService,)
+				public toast: ToastService,
+				public dialog: DialogService,
+				public database: DatabaseService)
 	{
 		this.categories   = this.database.categories()
 		this.products     = this.database.products()
@@ -45,19 +46,19 @@ export class AddPage
 	{
 		let actionSheet = this.actionSheetCtrl.create(
 		{
-			title: '' + product.name,
+			title: product.name,
 			buttons: [
 				{
 					text: 'Edit',
 					handler: () => {
-						console.log('Archive clicked');
+						this.editProduct(product)
 					}
 				},
 				{
 					text: 'Remove',
 					role: 'destructive',
 					handler: () => {
-						console.log('Destructive clicked');
+						this.removeProduct(product)
 					}
 				},
 				{
@@ -81,23 +82,13 @@ export class AddPage
 
 	removeProduct(product: Product)
 	{
-		let alert = this.alertCtrl.create(
-		{
-			message: 'Do you want to remove <b>' + product.name + '</b>?',
-			buttons: [
-				{
-					text: 'Cancel',
-					role: 'cancel'
-				},
-				{
-					text: 'Delete',
-					handler: () => {
-						this.deleteProduct(product)
-					}
-				}
-			]
-		})
-		alert.present()
+		this.dialog.confirmation(
+			'Do you want to remove <b>' + product.name + '</b>?',
+			'Remove',
+			() => {
+				this.deleteProduct(product)
+			}
+		)
 	}
 
 	deleteProduct(product: Product)

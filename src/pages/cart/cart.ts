@@ -1,15 +1,16 @@
 import { Component } from '@angular/core'
-import { NavController, AlertController } from 'ionic-angular'
+import { NavController } from 'ionic-angular'
 import { SocialSharing } from '@ionic-native/social-sharing'
 import { AddPage } from '../add/add'
 import { Item } from '../../app/models/item'
 import { ToastService } from '../../app/services/toast'
+import { DialogService } from '../../app/services/dialog'
 import { DatabaseService } from '../../app/services/database'
 
 @Component({
 	selector: 'page-cart',
 	templateUrl: 'cart.html',
-	providers: [ToastService, DatabaseService, SocialSharing]
+	providers: [ToastService, DialogService, DatabaseService, SocialSharing]
 })
 export class CartPage
 {
@@ -17,8 +18,8 @@ export class CartPage
 
 	constructor(public navCtrl: NavController,
 				public socialSharing: SocialSharing,
-				public alertCtrl: AlertController,
 				public toast: ToastService,
+				public dialog: DialogService,
 				public databsae: DatabaseService)
 	{
 		this.items = this.databsae.items()
@@ -57,22 +58,13 @@ export class CartPage
 
 	removeItem(item: Item)
 	{
-		let prompt = this.alertCtrl.create(
-		{
-			message: 'Do you want to remove <b>' + item.product.name + '</b> from the cart?',
-			buttons: [
-				{
-					text: 'Cancel'
-				},
-				{
-					text: 'Remove',
-					handler: data => {
-						this.removeItemFromCart(item)
-					}
-				}
-			]
-		})
-		prompt.present()
+		this.dialog.confirmation(
+			'Do you want to remove <b>' + item.product.name + '</b> from the cart?',
+			'Remove',
+			() => {
+				this.removeItemFromCart(item)
+			}
+		)
 	}
 
 	removeItemFromCart(item: Item)

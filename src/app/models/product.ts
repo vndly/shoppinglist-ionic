@@ -2,7 +2,7 @@ import { Category } from './category'
 
 export class Product
 {
-    constructor(public category: Category, public name: String, public image: String)
+    constructor(public category: Category, public name: string, public image: string)
 	{
     }
 

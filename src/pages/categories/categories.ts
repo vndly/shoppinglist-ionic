@@ -1,21 +1,22 @@
 import { Component } from '@angular/core'
-import { NavController, AlertController } from 'ionic-angular'
+import { NavController } from 'ionic-angular'
 import { Category } from '../../app/models/category'
 import { ToastService } from '../../app/services/toast'
+import { DialogService } from '../../app/services/dialog'
 import { DatabaseService } from '../../app/services/database'
 
 @Component({
 	selector: 'page-categories',
 	templateUrl: 'categories.html',
-	providers: [ToastService, DatabaseService]
+	providers: [ToastService, DialogService, DatabaseService]
 })
 export class CategoriesPage
 {
 	public categories: Category[]
 
 	constructor(public navCtrl: NavController,
-				public alertCtrl: AlertController,
 				public toast: ToastService,
+				public dialog: DialogService,
 				public database: DatabaseService)
 	{
 		this.categories = this.database.categories()
@@ -28,33 +29,23 @@ export class CategoriesPage
 
 	editCategory(category: Category, item)
 	{
-		let alert = this.alertCtrl.create(
-		{
-			title: 'Rename',
-			inputs: [
+		this.dialog.prompt(
+			'Rename',
+			[
 				{
 					name: 'name',
-					value: '' + category.name
+					value: category.name
 				}
 			],
-			buttons: [
-				{
-					text: 'Cancel',
-					role: 'cancel'
-				},
-				{
-					text: 'Rename',
-					handler: data => {
-						item.close()
-						this.renameCategory(category, data.name)
-					}
-				}
-			]
-		})
-		alert.present()
+			'Rename',
+			(data) => {
+				item.close()
+				this.renameCategory(category, data.name)
+			}
+		)
 	}
 
-	renameCategory(category: Category, name: String)
+	renameCategory(category: Category, name: string)
 	{
 		category.name = name
 
@@ -63,23 +54,13 @@ export class CategoriesPage
 
 	removeCategory(category: Category)
 	{
-		let alert = this.alertCtrl.create(
-		{
-			title: 'Do you want to remove <b>' + category.name + '</b>?',
-			buttons: [
-				{
-					text: 'Cancel',
-					role: 'cancel'
-				},
-				{
-					text: 'Delete',
-					handler: () => {
-						this.deleteCategory(category)
-					}
-				}
-			]
-		})
-		alert.present()
+		this.dialog.confirmation(
+			'Do you want to remove <b>' + category.name + '</b>?',
+			'Remove',
+			() => {
+				this.deleteCategory(category)
+			}
+		)
 	}
 
 	deleteCategory(category: Category)
