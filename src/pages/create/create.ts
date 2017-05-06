@@ -1,7 +1,8 @@
 import { Component } from '@angular/core'
-import { NavController } from 'ionic-angular'
+import { NavController, NavParams } from 'ionic-angular'
 import { CategoriesPage } from '../categories/categories'
 import { Category } from '../../app/models/category'
+import { Product } from '../../app/models/product'
 import { ToastService } from '../../app/services/toast'
 import { DatabaseService } from '../../app/services/database'
 
@@ -11,23 +12,46 @@ import { DatabaseService } from '../../app/services/database'
 })
 export class CreatePage
 {
-	public image: string = ''
-	public categorySelected: Category
-	public categories: Category[]
+	private categories: Category[]
+	private inputCategory: Category
+	private inputName: string  = ''
+	private inputImage: string = ''
+	private defaultImage: string = 'http://i.imgur.com/OkHEj66.png'
 
-	constructor(public navCtrl: NavController,
-				public toast: ToastService,
-				public database: DatabaseService)
+	constructor(private navCtrl: NavController,
+				private navParams: NavParams,
+				private toast: ToastService,
+				private database: DatabaseService)
 	{
 		this.categories = this.database.categories()
+
+		let editProduct: Product = this.navParams.get('product')
+
+		if (editProduct)
+		{
+			this.inputCategory = editProduct.category
+			this.inputName = editProduct.name
+			this.inputImage = editProduct.image
+		}
 	}
 
-	private createProduct()
+	public createProduct()
 	{
-		this.toast.show('CREATE PRODUCT')
+		let img: any = document.getElementById('imageTag')
+		this.toast.show('CREATE PRODUCT: ' + img.src)
+
+		img.onError = function errorHandler()
+		{
+			console.log('error')
+		}
 	}
 
-	private manageCategories()
+	public imageChanged()
+	{
+		console.log('changed')
+	}
+
+	public manageCategories()
 	{
 		this.navCtrl.push(CategoriesPage)
 	}

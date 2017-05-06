@@ -21,12 +21,12 @@ export class CategoriesPage
 		this.categories = this.database.categories()
 	}
 
-	private createCategory()
+	public createCategory()
 	{
 		this.toast.show('CREATE CATEGORY')
 	}
 
-	private editCategory(category: Category, item)
+	public editCategory(category: Category, item)
 	{
 		this.dialog.prompt(
 			'Rename',
@@ -51,7 +51,7 @@ export class CategoriesPage
 		this.toast.show('Category edited')
 	}
 
-	private removeCategory(category: Category)
+	public removeCategory(category: Category)
 	{
 		this.dialog.confirmation(
 			'Do you want to remove <b>' + category.name + '</b>?',
@@ -67,7 +67,7 @@ export class CategoriesPage
 		this.categories.remove(category)
 	}
 
-	private selectCategory(category: Category)
+	public selectCategory(category: Category)
 	{
 		this.navCtrl.pop()
 	}

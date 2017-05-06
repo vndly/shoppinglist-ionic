@@ -24,7 +24,7 @@ export class CartPage
 		this.refreshItems()
 	}
 
-	private shareCart()
+	public shareCart()
 	{
 		let message = ''
 
@@ -36,7 +36,7 @@ export class CartPage
 		this.socialSharing.share(message)
 	}
 
-	private toggleItem(item: Item)
+	public toggleItem(item: Item)
 	{
 		item.completed = !item.completed
 
@@ -53,12 +53,12 @@ export class CartPage
 		this.items = incompleted.concat(completed)
 	}
 
-	private addProduct()
+	public addProduct()
 	{
 		this.navCtrl.push(AddPage)
 	}
 
-	private removeItem(item: Item)
+	public removeItem(item: Item)
 	{
 		this.dialog.confirmation(
 			'Do you want to remove <b>' + item.product.name + '</b> from the cart?',

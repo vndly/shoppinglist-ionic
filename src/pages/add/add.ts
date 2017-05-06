@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core'
-import { NavController, AlertController, ActionSheetController } from 'ionic-angular'
+import { NavController, ActionSheetController } from 'ionic-angular'
 import { CreatePage } from '../create/create'
 import { Slides } from 'ionic-angular'
 import { Category } from '../../app/models/category'
@@ -18,6 +18,8 @@ export class AddPage
 	private categories: Category[]
 	private products: Product[]
 
+	private defaultImage = 'http://i.imgur.com/OkHEj66.png'
+
 	@ViewChild(Slides) slides: Slides
 
 	constructor(private navCtrl: NavController,
@@ -31,7 +33,7 @@ export class AddPage
 		this.categoryName = this.categories[0].name
 	}
 
-	private slideChanged()
+	public slideChanged()
 	{
 		let currentIndex = this.slides.getActiveIndex()
 
@@ -41,7 +43,7 @@ export class AddPage
 		}
 	}
 
-	private showProductOptions(product: Product, $event)
+	public showProductOptions(product: Product, $event)
 	{
 		$event.stopPropagation()
 
@@ -71,7 +73,7 @@ export class AddPage
 		actionSheet.present()
 	}
 
-	private addProduct(product: Product)
+	public addProduct(product: Product)
 	{
 		this.database.addItem(product)
 		this.refreshProducts()
@@ -84,9 +86,9 @@ export class AddPage
 
 	private editProduct(product: Product)
 	{
-		// TODO
-		this.toast.show('EDIT: ' + product.name)
-		this.navCtrl.push(CreatePage)
+		this.navCtrl.push(CreatePage, {
+    		product: product
+		})
 	}
 
 	private removeProduct(product: Product)
@@ -106,7 +108,7 @@ export class AddPage
 		this.refreshProducts()
 	}
 
-	private createProduct()
+	public createProduct()
 	{
 		this.navCtrl.push(CreatePage)
 	}
