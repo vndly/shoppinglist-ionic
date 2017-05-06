@@ -7,8 +7,7 @@ import { DatabaseService } from '../../app/services/database'
 
 @Component({
 	selector: 'page-create',
-	templateUrl: 'create.html',
-	providers: [ToastService, DatabaseService]
+	templateUrl: 'create.html'
 })
 export class CreatePage
 {

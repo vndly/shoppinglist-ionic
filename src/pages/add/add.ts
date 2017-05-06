@@ -10,8 +10,7 @@ import { DatabaseService } from '../../app/services/database'
 
 @Component({
 	selector: 'page-add',
-	templateUrl: 'add.html',
-	providers: [ToastService, DialogService, DatabaseService]
+	templateUrl: 'add.html'
 })
 export class AddPage
 {
@@ -44,7 +43,7 @@ export class AddPage
 
 	showProductOptions(product: Product, $event)
 	{
-		$event.stopPropagation();
+		$event.stopPropagation()
 
 		let actionSheet = this.actionSheetCtrl.create(
 		{
@@ -68,8 +67,8 @@ export class AddPage
 					role: 'cancel'
 				}
 			]
-		});
-		actionSheet.present();
+		})
+		actionSheet.present()
 	}
 
 	addProduct(product: Product)
@@ -79,7 +78,7 @@ export class AddPage
 
 	editProduct(product: Product)
 	{
-		this.toast.show('EDIT: ' + product.name);
+		this.toast.show('EDIT: ' + product.name)
 	}
 
 	removeProduct(product: Product)
@@ -95,7 +94,7 @@ export class AddPage
 
 	deleteProduct(product: Product)
 	{
-		this.toast.show('DELETE: ' + product.name);
+		this.toast.show('DELETE: ' + product.name)
 	}
 
 	createProduct()

@@ -7,8 +7,7 @@ import { DatabaseService } from '../../app/services/database'
 
 @Component({
 	selector: 'page-categories',
-	templateUrl: 'categories.html',
-	providers: [ToastService, DialogService, DatabaseService]
+	templateUrl: 'categories.html'
 })
 export class CategoriesPage
 {

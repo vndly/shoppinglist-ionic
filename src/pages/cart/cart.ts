@@ -9,8 +9,7 @@ import { DatabaseService } from '../../app/services/database'
 
 @Component({
 	selector: 'page-cart',
-	templateUrl: 'cart.html',
-	providers: [ToastService, DialogService, DatabaseService, SocialSharing]
+	templateUrl: 'cart.html'
 })
 export class CartPage
 {
