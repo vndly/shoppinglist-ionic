@@ -37,18 +37,13 @@ export class CreatePage
 
 	public createProduct()
 	{
-		let img: any = document.getElementById('imageTag')
-		this.toast.show('CREATE PRODUCT: ' + img.src)
-
-		img.onError = function errorHandler()
-		{
-			console.log('error')
-		}
+		this.toast.show('CREATE PRODUCT')
 	}
 
-	public imageChanged()
+	public imageError()
 	{
-		console.log('changed')
+		let img: any = document.getElementById('imageTag')
+		img.src = this.defaultImage
 	}
 
 	public manageCategories()
