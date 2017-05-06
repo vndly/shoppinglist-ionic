@@ -97,36 +97,32 @@ export class DatabaseService
 		this.itemsList = [
 			new Item(Product.PRODUCT_AIR_FRESHENER, false),
 			new Item(Product.PRODUCT_BANANAS, false),
+			new Item(Product.PRODUCT_COFFEE, false),
 			new Item(Product.PRODUCT_CEREALS, false),
 			new Item(Product.PRODUCT_HAIR_REMOVER, false),
 			new Item(Product.PRODUCT_PAPER_TOWELS, false),
 			new Item(Product.PRODUCT_SHAVING_FOAM, false),
 			new Item(Product.PRODUCT_TOMATO_SAUCE, false),
 			new Item(Product.PRODUCT_BLEACH, false),
-			new Item(Product.PRODUCT_CORN, false),
-			new Item(Product.PRODUCT_DEODORANT, false),
-			new Item(Product.PRODUCT_ICE_TEA, false),
-			new Item(Product.PRODUCT_KITCHEN_RAGS, false),
-			new Item(Product.PRODUCT_LASAGNA, false),
-			new Item(Product.PRODUCT_MEAT, false),
-			new Item(Product.PRODUCT_YOGURT, false),
-			new Item(Product.PRODUCT_PIZZA, false)
+			new Item(Product.PRODUCT_CORN, false)
 		]
 	}
 
 	public categories(): Category[]
 	{
-		return this.categoriesList;
+		return this.categoriesList.sort((c1, c2) => c1.name.localeCompare(c2.name))
 	}
 
 	public products(): Product[]
 	{
-		return this.productsList;
+		return this.productsList
+					.filter((product) => !this.itemsList.find((item) => item.product == product))
+					.sort((p1, p2) => p1.name.localeCompare(p2.name));
 	}
 
 	public items(): Item[]
 	{
-		return this.itemsList;
+		return this.itemsList.sort((i1, i2) => i1.product.name.localeCompare(i2.product.name));;
 	}
 
 	public removeItem(item: Item)
