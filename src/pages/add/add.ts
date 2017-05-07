@@ -26,7 +26,7 @@ export class AddPage
 				private dialog: DialogService,
 				private database: DatabaseService)
 	{
-		this.categories   = this.database.categories()
+		this.categories   = this.database.categories(true)
 		this.products     = this.database.products()
 		this.categoryName = this.categories[0].name
 	}
@@ -79,7 +79,8 @@ export class AddPage
 
 	private refreshProducts()
 	{
-		this.products = this.database.products()
+		this.categories = this.database.categories(true)
+		this.products   = this.database.products()
 		this.slideChanged()
 	}
 

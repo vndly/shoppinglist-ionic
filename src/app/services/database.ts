@@ -110,9 +110,23 @@ export class DatabaseService
 
 	// -------------------------------------------------------------
 
-	public categories(): Category[]
+	public categories(onlyNotEmpty: boolean = false): Category[]
 	{
-		return this.categoriesList.sort((c1, c2) => c1.name.localeCompare(c2.name))
+		let filtered: Category[]
+		
+		if (onlyNotEmpty)
+		{
+			filtered = this.categoriesList.filter((c) => 
+				this.productsList.some((p) => (p.category.name == c.name) && 
+				(!this.itemsList.some((i) => i.product.name == p.name)))
+			)
+		}
+		else
+		{
+			filtered = this.categoriesList
+		}
+
+		return filtered.sort((c1, c2) => c1.name.localeCompare(c2.name))
 	}
 
 	public products(): Product[]
