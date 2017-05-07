@@ -17,7 +17,7 @@ export class CreatePage
 	private inputCategory: Category
 	private inputName: string  = ''
 	private inputImage: string = ''
-	private defaultImage: string = '' //http://i.imgur.com/OkHEj66.png'
+	private defaultImage: string = 'http://i.imgur.com/OkHEj66.png'
 
 	constructor(private navCtrl: NavController,
 				private navParams: NavParams,
@@ -38,7 +38,7 @@ export class CreatePage
 
 	public searchImage()
 	{
-		let callback = function(imageUrl) {
+		let callback = (imageUrl) => {
 			return new Promise((resolve, reject) => {
 				resolve()
 				
@@ -55,6 +55,10 @@ export class CreatePage
 	public createProduct()
 	{
 		this.toast.show('CREATE PRODUCT')
+
+		console.log(this.inputCategory)
+		console.log(this.inputName)
+		console.log(this.inputImage)
 	}
 
 	public imageError()
