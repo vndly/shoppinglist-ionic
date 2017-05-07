@@ -31,7 +31,9 @@
 		<ion-list-header class="list-header">Image</ion-list-header>
 		<ion-item>
 			<ion-input style="padding-left:16px" type="url" [(ngModel)]="inputImage" placeholder="http://i.imgur.com/OkHEj66.png"></ion-input>
-			<ion-icon name="ios-image-outline" (click)="searchImage()" item-right></ion-icon>
+			<button ion-button icon-only item-right clear (click)="searchImage()">
+				<ion-icon name="ios-image-outline"></ion-icon>
+			</button>
 		</ion-item>
 
 	</ion-list>
