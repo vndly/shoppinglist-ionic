@@ -9,4 +9,17 @@ page-create {
 		margin-left: 15px  !important;
 		margin-right: 15px !important;
 	}
+
+	.image-preview {
+		max-height: 100px !important;
+	}
+
+	.image-preview-container
+	{
+		width: 100%;
+		text-align: center;
+		margin-bottom: 50px;
+		padding-left: 100px;
+		padding-right: 100px;
+	}
 }

@@ -31,12 +31,13 @@
 		<ion-list-header class="list-header">Image</ion-list-header>
 		<ion-item>
 			<ion-input style="padding-left:16px" type="url" [(ngModel)]="inputImage" placeholder="http://i.imgur.com/OkHEj66.png"></ion-input>
+			<ion-icon name="ios-image-outline" (click)="searchImage()" item-right></ion-icon>
 		</ion-item>
 
 	</ion-list>
 
-	<div style="width:100%;text-align:center;margin-bottom:50px;padding-left:100px;padding-right:100px">
-		<img id="imageTag" (error)="imageError()" src="{{(inputImage.length == 0) ? defaultImage : inputImage}}" />
+	<div class="image-preview-container">
+		<img id="pewviewImageTag" class="image-preview" (error)="imageError()" src="{{(inputImage.length == 0) ? defaultImage : inputImage}}" />
 	</div>
 
 	<div class="create-product-button">

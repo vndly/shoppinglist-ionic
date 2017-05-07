@@ -10,6 +10,7 @@ export class ImagePage
 {
 	private keywords: string = ''
 	private rows: string[][]
+	private callback
 
 	constructor(private navCtrl: NavController,
 				private navParams: NavParams,
@@ -22,6 +23,8 @@ export class ImagePage
 		{
 			this.keywords = keywordsParam
 		}
+
+		this.callback = this.navParams.get("callback")
 
 		this.searchImages()
 	}
@@ -57,6 +60,8 @@ export class ImagePage
 
 	public imageSelected(imageUrl: string)
 	{
-		console.log(imageUrl)
+		this.callback(imageUrl).then(() => {
+			this.navCtrl.pop()
+		})
 	}
 }

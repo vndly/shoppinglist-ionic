@@ -36,17 +36,30 @@ export class CreatePage
 		}
 	}
 
+	public searchImage()
+	{
+		let callback = function(imageUrl) {
+			return new Promise((resolve, reject) => {
+				resolve()
+				
+				this.inputImage = imageUrl
+			})
+		}
+
+		this.navCtrl.push(ImagePage, {
+			keywords: this.inputName,
+			callback: callback
+		})
+	}
+
 	public createProduct()
 	{
-		//this.toast.show('CREATE PRODUCT')
-		this.navCtrl.push(ImagePage, {
-			keywords: this.inputName
-		})
+		this.toast.show('CREATE PRODUCT')
 	}
 
 	public imageError()
 	{
-		let img: any = document.getElementById('imageTag')
+		let img: any = document.getElementById('pewviewImageTag')
 		img.src = this.defaultImage
 	}
 

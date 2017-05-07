@@ -21,7 +21,7 @@ export class DatabaseService
 			Category.CATEGORY_HOUSEHOLD,
 			Category.CATEGORY_MEAT_AND_FISH,
 			Category.CATEGORY_MILK_AND_CHEESE
-		];
+		]
 
 		this.productsList = [
 			Product.PRODUCT_BEER,
@@ -119,7 +119,7 @@ export class DatabaseService
 	{
 		return this.productsList
 					.filter((product) => !this.itemsList.find((item) => item.product == product))
-					.sort((p1, p2) => p1.name.localeCompare(p2.name));
+					.sort((p1, p2) => p1.name.localeCompare(p2.name))
 	}
 
 	public items(): Item[]
