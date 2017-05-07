@@ -136,14 +136,14 @@ export class DatabaseService
 
 	// -------------------------------------------------------------
 
-	private existsCategory(name: string): boolean
+	private categoryByName(name: string): Category
 	{
-		return this.categoriesList.some((c) => c.name == name)
+		return this.categoriesList.find((c) => c.name == name)
 	}
 
 	public addCategory(name: string): boolean
 	{
-		if (this.existsCategory(name))
+		if (this.categoryByName(name))
 		{
 			return false
 		}
@@ -158,13 +158,13 @@ export class DatabaseService
 
 	public renameCategory(category: Category, name: string): boolean
 	{
-		if (this.existsCategory(name))
+		if (this.categoryByName(name))
 		{
 			return false
 		}
 		else
 		{
-			let foundCategory: Category = this.categoriesList.find((c) => c.name == category.name)
+			let foundCategory: Category = this.categoryByName(category.name)
 			foundCategory.name = name
 			this.updateDatabase()
 
@@ -191,6 +191,38 @@ export class DatabaseService
 	}
 
 	// -------------------------------------------------------------
+
+	public createProduct(category: string, name: string, image: string): boolean
+	{
+		if (this.productsList.some((p) => p.name == name))
+		{
+			return false
+		}
+		else
+		{
+			let foundCategory: Category = this.categoryByName(category)
+			this.productsList.push(new Product(foundCategory, name, image))
+
+			return true
+		}
+	}
+
+	public updateProduct(product: Product, category: string, name: string, image: string): boolean
+	{
+		if ((product.name != name) && (this.productsList.some((p) => p.name == name)))
+		{
+			return false
+		}
+		else
+		{
+			let foundProduct: Product = this.productsList.find((p) => p.name == product.name)
+			foundProduct.category = this.categoryByName(category)
+			foundProduct.name     = name
+			foundProduct.image    = image
+
+			return true
+		}
+	}
 
 	public removeProduct(product: Product)
 	{

@@ -43,7 +43,7 @@
 	</div>
 
 	<div class="create-product-button">
-		<button (click)="createProduct()" class="button button-ios button-default button-default-ios button-block button-block-ios" ion-button>Create</button>
+		<button (click)="createProduct()" class="button button-ios button-default button-default-ios button-block button-block-ios" ion-button>{{(this.editProduct != null) ? 'Update' : 'Create'}}</button>
 	</div>
 
 </ion-content>

@@ -5,6 +5,7 @@ import { ImagePage } from '../image/image'
 import { Category } from '../../app/models/category'
 import { Product } from '../../app/models/product'
 import { ToastService } from '../../app/services/toast'
+import { DialogService } from '../../app/services/dialog'
 import { DatabaseService } from '../../app/services/database'
 
 @Component({
@@ -18,21 +19,22 @@ export class CreatePage
 	private inputName: string  = ''
 	private inputImage: string = ''
 	private defaultImage: string = 'http://i.imgur.com/OkHEj66.png'
+	private editProduct: Product
 
 	constructor(private navCtrl: NavController,
 				private navParams: NavParams,
 				private toast: ToastService,
+				private dialog: DialogService,
 				private database: DatabaseService)
 	{
-		this.categories = this.database.categories()
+		this.categories  = this.database.categories()
+		this.editProduct = this.navParams.get('product')
 
-		let editProduct: Product = this.navParams.get('product')
-
-		if (editProduct)
+		if (this.editProduct)
 		{
-			this.inputCategory = editProduct.category.name
-			this.inputName = editProduct.name
-			this.inputImage = editProduct.image
+			this.inputCategory = this.editProduct.category.name
+			this.inputName = this.editProduct.name
+			this.inputImage = this.editProduct.image
 		}
 	}
 
@@ -54,11 +56,38 @@ export class CreatePage
 
 	public createProduct()
 	{
-		this.toast.show('CREATE PRODUCT')
+		if (this.editProduct)
+		{
+			this.updateProduct(this.editProduct, this.inputCategory, this.inputName, this.inputImage)
+		}
+		else
+		{
+			this.addProduct(this.inputCategory, this.inputName, this.inputImage)
+		}
+	}
 
-		console.log(this.inputCategory)
-		console.log(this.inputName)
-		console.log(this.inputImage)
+	private updateProduct(product: Product, category: string, name: string, image: string)
+	{
+		if (this.database.updateProduct(product, category, name, image))
+		{
+			this.navCtrl.pop()
+		}
+		else
+		{
+			this.dialog.error('Cannot update product', 'There is another product with the same name')
+		}
+	}
+
+	private addProduct(category: string, name: string, image: string)
+	{
+		if (this.database.createProduct(category, name, image))
+		{
+			this.navCtrl.pop()
+		}
+		else
+		{
+			this.dialog.error('Cannot create product', 'There is another product with the same name')
+		}
 	}
 
 	public imageError()
