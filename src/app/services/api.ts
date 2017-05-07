@@ -11,8 +11,8 @@ export class ApiService
 
 	public loadImages(keywords: string)
 	{
-		let headers = new Headers();
-		headers.append('Ocp-Apim-Subscription-Key', '0bbdbc1008f4407cb6986fda5a2027d4');
+		let headers = new Headers()
+		headers.append('Ocp-Apim-Subscription-Key', '0bbdbc1008f4407cb6986fda5a2027d4')
 
 		return new Promise(resolve => {
 			this.http.get('https://api.cognitive.microsoft.com/bing/v5.0/images/search?q=' + keywords + '&mkt=en-us', {

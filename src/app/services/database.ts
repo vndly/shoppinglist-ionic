@@ -129,6 +129,13 @@ export class DatabaseService
 
 	// -------------------------------------------------------------
 
+	private updateDatabase()
+	{
+		// TODO
+	}
+
+	// -------------------------------------------------------------
+
 	private existsCategory(name: string): boolean
 	{
 		return this.categoriesList.some((c) => c.name == name)
@@ -136,8 +143,6 @@ export class DatabaseService
 
 	public addCategory(name: string): boolean
 	{
-		// TODO: update database
-
 		if (this.existsCategory(name))
 		{
 			return false
@@ -145,6 +150,7 @@ export class DatabaseService
 		else
 		{
 			this.categoriesList.push(new Category(name))
+			this.updateDatabase()
 
 			return true
 		}
@@ -152,15 +158,15 @@ export class DatabaseService
 
 	public renameCategory(category: Category, name: string): boolean
 	{
-		// TODO: update database
-
 		if (this.existsCategory(name))
 		{
 			return false
 		}
 		else
 		{
-			category.name = name
+			let foundCategory: Category = this.categoriesList.find((c) => c.name == category.name)
+			foundCategory.name = name
+			this.updateDatabase()
 
 			return true
 		}
@@ -168,8 +174,6 @@ export class DatabaseService
 
 	public removeCategory(category: Category): boolean
 	{
-		// TODO: update database
-
 		let productWithCategory = this.productsList.some((p) => p.category.name == category.name)
 		let itemWithCategory = this.itemsList.some((i) => i.product.category.name == category.name)
 
@@ -180,6 +184,7 @@ export class DatabaseService
 		else
 		{
 			this.categoriesList.remove(category)
+			this.updateDatabase()
 
 			return true
 		}
@@ -189,24 +194,21 @@ export class DatabaseService
 
 	public removeProduct(product: Product)
 	{
-		return this.productsList.remove(product)
-
-		// TODO: update database
+		this.productsList.remove(product)
+		this.updateDatabase()
 	}
 
 	// -------------------------------------------------------------
 
 	public removeItem(item: Item)
 	{
-		return this.itemsList.remove(item)
-
-		// TODO: update database
+		this.itemsList.remove(item)
+		this.updateDatabase()
 	}
 
 	public addItem(product: Product)
 	{
 		this.itemsList.push(new Item(product, false))
-
-		// TODO: update database
+		this.updateDatabase()
 	}
 }
