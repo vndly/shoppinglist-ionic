@@ -36,7 +36,7 @@ export class CategoriesPage
 			],
 			'Create',
 			(data) => {
-				this.addCategory(data.name)
+				this.addCategory(data.name.trim())
 			}
 		)
 	}
@@ -66,7 +66,7 @@ export class CategoriesPage
 			'Rename',
 			(data) => {
 				item.close()
-				this.renameCategory(category, data.name)
+				this.renameCategory(category, data.name.trim())
 			}
 		)
 	}

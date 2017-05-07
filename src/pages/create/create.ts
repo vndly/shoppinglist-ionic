@@ -15,7 +15,7 @@ import { DatabaseService } from '../../app/services/database'
 export class CreatePage
 {
 	private categories: Category[]
-	private inputCategory: string
+	private inputCategory: string = ''
 	private inputName: string  = ''
 	private inputImage: string = ''
 	private defaultImage: string = 'http://i.imgur.com/OkHEj66.png'
@@ -56,14 +56,41 @@ export class CreatePage
 
 	public createProduct()
 	{
-		if (this.editProduct)
+		if (this.formValid(this.inputCategory.trim(), this.inputName.trim(), this.inputImage.trim()))
 		{
-			this.updateProduct(this.editProduct, this.inputCategory, this.inputName, this.inputImage)
+			if (this.editProduct)
+			{
+				this.updateProduct(this.editProduct, this.inputCategory.trim(), this.inputName.trim(), this.inputImage.trim())
+			}
+			else
+			{
+				this.addProduct(this.inputCategory.trim(), this.inputName.trim(), this.inputImage.trim())
+			}
 		}
-		else
+	}
+	
+	private formValid(category: string, name: string, image: string): boolean
+	{
+		if (!category)
 		{
-			this.addProduct(this.inputCategory, this.inputName, this.inputImage)
+			this.toast.show('Invalid category')
+
+			return false
 		}
+		else if (!name)
+		{
+			this.toast.show('Invalid name')
+
+			return false
+		}
+		else if (!image)
+		{
+			this.inputImage = this.defaultImage
+
+			return true
+		}
+
+		return true
 	}
 
 	private updateProduct(product: Product, category: string, name: string, image: string)
