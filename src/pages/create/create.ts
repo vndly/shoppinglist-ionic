@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { NavController, NavParams } from 'ionic-angular'
 import { CategoriesPage } from '../categories/categories'
+import { ImagePage } from '../image/image'
 import { Category } from '../../app/models/category'
 import { Product } from '../../app/models/product'
 import { ToastService } from '../../app/services/toast'
@@ -16,7 +17,7 @@ export class CreatePage
 	private inputCategory: Category
 	private inputName: string  = ''
 	private inputImage: string = ''
-	private defaultImage: string = 'http://i.imgur.com/OkHEj66.png'
+	private defaultImage: string = '' //http://i.imgur.com/OkHEj66.png'
 
 	constructor(private navCtrl: NavController,
 				private navParams: NavParams,
@@ -37,7 +38,8 @@ export class CreatePage
 
 	public createProduct()
 	{
-		this.toast.show('CREATE PRODUCT')
+		//this.toast.show('CREATE PRODUCT')
+		this.navCtrl.push(ImagePage)
 	}
 
 	public imageError()

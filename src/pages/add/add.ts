@@ -18,8 +18,6 @@ export class AddPage
 	private categories: Category[]
 	private products: Product[]
 
-	private defaultImage = 'http://i.imgur.com/OkHEj66.png'
-
 	@ViewChild(Slides) slides: Slides
 
 	constructor(private navCtrl: NavController,

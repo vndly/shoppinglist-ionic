@@ -5,6 +5,7 @@ import { CartPage } from '../pages/cart/cart'
 import { AddPage } from '../pages/add/add'
 import { CreatePage } from '../pages/create/create'
 import { CategoriesPage } from '../pages/categories/categories'
+import { ImagePage } from '../pages/image/image'
 import { ProductFilter } from '../app/filters/productFilter'
 
 @NgModule({
@@ -14,6 +15,7 @@ import { ProductFilter } from '../app/filters/productFilter'
 		AddPage,
 		CreatePage,
 		CategoriesPage,
+		ImagePage,
 		ProductFilter
 	],
 	imports: [
@@ -25,7 +27,8 @@ import { ProductFilter } from '../app/filters/productFilter'
 		CartPage,
 		AddPage,
 		CreatePage,
-		CategoriesPage
+		CategoriesPage,
+		ImagePage
 	],
 	providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }]
 })

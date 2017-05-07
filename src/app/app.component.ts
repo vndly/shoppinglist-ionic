@@ -6,10 +6,11 @@ import { CartPage } from '../pages/cart/cart';
 import { ToastService } from './services/toast'
 import { DialogService } from './services/dialog'
 import { DatabaseService } from './services/database'
+import { ApiService } from './services/api'
 
 @Component({
 	templateUrl: 'app.html',
-	providers: [ToastService, DialogService, DatabaseService, SocialSharing]
+	providers: [ToastService, DialogService, DatabaseService, ApiService, SocialSharing]
 })
 export class MyApp {
 	rootPage = CartPage;

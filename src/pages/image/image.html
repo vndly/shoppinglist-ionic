@@ -1,0 +1,25 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>
+			Select image
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	
+	<ion-searchbar (ionInput)="searchImages($event.target.value)"></ion-searchbar>
+
+	<ion-grid>
+		<ion-row *ngFor="let row of rows">
+			<ion-col *ngFor="let image of row" class="image-item"><img class="image-item" src="{{image}}" (click)="imageSelected(image)"></ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<!--<ion-list>
+		<ion-item *ngFor="let image of images">
+			<img class="image-item" src="{{image.thumbnailUrl}}">
+		</ion-item>
+	</ion-list>-->
+
+</ion-content>
