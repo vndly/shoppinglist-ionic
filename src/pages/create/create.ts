@@ -14,7 +14,7 @@ import { DatabaseService } from '../../app/services/database'
 export class CreatePage
 {
 	private categories: Category[]
-	private inputCategory: Category
+	private inputCategory: string
 	private inputName: string  = ''
 	private inputImage: string = ''
 	private defaultImage: string = 'http://i.imgur.com/OkHEj66.png'
@@ -30,7 +30,7 @@ export class CreatePage
 
 		if (editProduct)
 		{
-			this.inputCategory = editProduct.category
+			this.inputCategory = editProduct.category.name
 			this.inputName = editProduct.name
 			this.inputImage = editProduct.image
 		}

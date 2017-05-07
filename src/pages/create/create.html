@@ -19,7 +19,7 @@
 		<ion-item>
 			<ion-label>Category</ion-label>
 			<ion-select [(ngModel)]="inputCategory" class="category-select" placeholder="Category">
-				<ion-option *ngFor="let category of categories" multiple="false">{{category.name}}</ion-option>
+				<ion-option *ngFor="let category of categories" value="{{category.name}}" multiple="false">{{category.name}}</ion-option>
 			</ion-select>
 		</ion-item>
 
