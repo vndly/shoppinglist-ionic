@@ -80,6 +80,7 @@ export class AddPage
 	private refreshProducts()
 	{
 		this.products = this.database.products()
+		this.slideChanged()
 	}
 
 	private editProduct(product: Product)

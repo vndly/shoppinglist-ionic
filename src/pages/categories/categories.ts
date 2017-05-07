@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController } from 'ionic-angular'
+import { NavController, NavParams } from 'ionic-angular'
 import { Category } from '../../app/models/category'
 import { ToastService } from '../../app/services/toast'
 import { DialogService } from '../../app/services/dialog'
@@ -12,13 +12,16 @@ import { DatabaseService } from '../../app/services/database'
 export class CategoriesPage
 {
 	private categories: Category[]
+	private callback
 
 	constructor(private navCtrl: NavController,
+				private navParams: NavParams,
 				private toast: ToastService,
 				private dialog: DialogService,
 				private database: DatabaseService)
 	{
 		this.categories = this.database.categories()
+		this.callback   = this.navParams.get("callback")
 	}
 
 	public createCategory()
@@ -46,8 +49,14 @@ export class CategoriesPage
 
 	private renameCategory(category: Category, name: string)
 	{
-		this.database.renameCategory(category, name)
-		this.refreshCategories()
+		if (this.database.renameCategory(category, name))
+		{
+			this.refreshCategories()
+		}
+		else
+		{
+			this.dialog.error('Cannot rename category', 'There is another category with the same name')
+		}
 	}
 
 	public removeCategory(category: Category)
@@ -63,14 +72,21 @@ export class CategoriesPage
 
 	private deleteCategory(category: Category)
 	{
-		this.database.removeCategory(category)
-		this.refreshCategories()
+		if (this.database.removeCategory(category))
+		{
+			this.refreshCategories()
+		}
+		else
+		{
+			this.dialog.error('Cannot remove category', 'There are products assigned to that category')
+		}
 	}
 
 	public selectCategory(category: Category)
 	{
-		// TODO: select category in previous screen
-		this.navCtrl.pop()
+		this.callback(category).then(() => {
+			this.navCtrl.pop()
+		})
 	}
 
 	private refreshCategories()

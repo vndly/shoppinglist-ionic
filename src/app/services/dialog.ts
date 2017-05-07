@@ -49,4 +49,14 @@ export class DialogService
 		})
 		prompt.present()
 	}
+
+	public error(title: string, subtitle: string)
+	{
+		let alert = this.alertCtrl.create({
+			title: title,
+			subTitle: subtitle,
+			buttons: ['OK']
+		})
+		alert.present()
+	}
 }

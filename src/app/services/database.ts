@@ -129,20 +129,39 @@ export class DatabaseService
 
 	// -------------------------------------------------------------
 
-	public renameCategory(category: Category, name: string)
+	public renameCategory(category: Category, name: string): boolean
 	{
-		// TODO: check if no other category with that name
-
-		category.name = name
-
 		// TODO: update database
+
+		if (this.categoriesList.find((c) => c.name == name))
+		{
+			return false
+		}
+		else
+		{
+			category.name = name
+
+			return true
+		}
 	}
 
-	public removeCategory(category: Category)
+	public removeCategory(category: Category): boolean
 	{
-		// TODO: check if category is not empty
+		// TODO: update database
 
-		this.categoriesList.remove(category)
+		let productWithCategory = this.productsList.find((p) => p.category.name == category.name)
+		let itemWithCategory = this.itemsList.find((i) => i.product.category.name == category.name)
+
+		if (productWithCategory || itemWithCategory)
+		{
+			return false
+		}
+		else
+		{
+			this.categoriesList.remove(category)
+
+			return true
+		}
 	}
 
 	// -------------------------------------------------------------

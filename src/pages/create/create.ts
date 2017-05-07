@@ -69,6 +69,16 @@ export class CreatePage
 
 	public manageCategories()
 	{
-		this.navCtrl.push(CategoriesPage)
+		let callback = (category) => {
+			return new Promise((resolve, reject) => {
+				resolve()
+				
+				this.inputCategory = category.name
+			})
+		}
+
+		this.navCtrl.push(CategoriesPage, {
+			callback: callback
+		})
 	}
 }
