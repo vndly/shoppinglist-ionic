@@ -39,7 +39,9 @@ export class CreatePage
 	public createProduct()
 	{
 		//this.toast.show('CREATE PRODUCT')
-		this.navCtrl.push(ImagePage)
+		this.navCtrl.push(ImagePage, {
+			keywords: this.inputName
+		})
 	}
 
 	public imageError()

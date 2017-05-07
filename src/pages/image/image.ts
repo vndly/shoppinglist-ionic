@@ -8,6 +8,7 @@ import { ApiService } from '../../app/services/api'
 })
 export class ImagePage
 {
+	private keywords: string = ''
 	private rows: string[][]
 
 	constructor(private navCtrl: NavController,
@@ -15,21 +16,27 @@ export class ImagePage
 				private loadingCtrl: LoadingController,
 				private api: ApiService)
 	{
-		/*let editProduct: Product = this.navParams.get('product')
+		let keywordsParam: string = this.navParams.get('keywords')
 
-		if (editProduct)
+		if (keywordsParam)
 		{
-			this.inputCategory = editProduct.category
-			this.inputName = editProduct.name
-			this.inputImage = editProduct.image
-		}*/
+			this.keywords = keywordsParam
+		}
 
-		this.searchImages('')
+		this.searchImages()
 	}
 
-	private searchImages(keywords: string)
+	public inputChanged(event)
 	{
-		if (keywords.trim().length == 0)
+		if (event.which == 13)
+		{
+			this.searchImages()
+		}
+	}
+
+	public searchImages()
+	{
+		if (this.keywords.trim().length == 0)
 		{
 			this.rows = []
 		}
@@ -40,7 +47,7 @@ export class ImagePage
 			})
 			loader.present()
 
-			this.api.loadImages(keywords).then((data: string[][]) =>
+			this.api.loadImages(this.keywords).then((data: string[][]) =>
 			{
 				this.rows = data
 				loader.dismiss()

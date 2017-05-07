@@ -23,14 +23,20 @@ export class ApiService
 				let list = data.value
 				let result: string[][] = new Array()
 
-				for (var i = 0; i < list.length; i+=2)
+				let size = 3
+
+				for (var i = 0; i < list.length; i+=size)
 				{
-					if ((i+1) < list.length)
+					if ((i + (size - 1)) < list.length)
 					{
-						var element1 = list[i];
-						var element2 = list[i+1];
+						var row = new Array();
+
+						for (var j = 0; j < size; j++)
+						{
+							row.push(list[i+j].thumbnailUrl)
+						}
 						
-						result.push([element1.thumbnailUrl, element2.thumbnailUrl])
+						result.push(row)
 					}
 				}
 
