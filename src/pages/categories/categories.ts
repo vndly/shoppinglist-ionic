@@ -26,7 +26,31 @@ export class CategoriesPage
 
 	public createCategory()
 	{
-		this.toast.show('CREATE CATEGORY')
+		this.dialog.prompt(
+			'Create',
+			[
+				{
+					name: 'name',
+					value: ''
+				}
+			],
+			'Create',
+			(data) => {
+				this.addCategory(data.name)
+			}
+		)
+	}
+
+	private addCategory(name: string)
+	{
+		if (this.database.addCategory(name))
+		{
+			this.refreshCategories()
+		}
+		else
+		{
+			this.dialog.error('Cannot create category', 'There is another category with the same name')
+		}
 	}
 
 	public editCategory(category: Category, item)

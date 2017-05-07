@@ -118,7 +118,7 @@ export class DatabaseService
 	public products(): Product[]
 	{
 		return this.productsList
-					.filter((product) => !this.itemsList.find((item) => item.product == product))
+					.filter((product) => !this.itemsList.some((item) => item.product == product))
 					.sort((p1, p2) => p1.name.localeCompare(p2.name))
 	}
 
@@ -129,11 +129,32 @@ export class DatabaseService
 
 	// -------------------------------------------------------------
 
+	private existsCategory(name: string): boolean
+	{
+		return this.categoriesList.some((c) => c.name == name)
+	}
+
+	public addCategory(name: string): boolean
+	{
+		// TODO: update database
+
+		if (this.existsCategory(name))
+		{
+			return false
+		}
+		else
+		{
+			this.categoriesList.push(new Category(name))
+
+			return true
+		}
+	}
+
 	public renameCategory(category: Category, name: string): boolean
 	{
 		// TODO: update database
 
-		if (this.categoriesList.find((c) => c.name == name))
+		if (this.existsCategory(name))
 		{
 			return false
 		}
@@ -149,8 +170,8 @@ export class DatabaseService
 	{
 		// TODO: update database
 
-		let productWithCategory = this.productsList.find((p) => p.category.name == category.name)
-		let itemWithCategory = this.itemsList.find((i) => i.product.category.name == category.name)
+		let productWithCategory = this.productsList.some((p) => p.category.name == category.name)
+		let itemWithCategory = this.itemsList.some((i) => i.product.category.name == category.name)
 
 		if (productWithCategory || itemWithCategory)
 		{
