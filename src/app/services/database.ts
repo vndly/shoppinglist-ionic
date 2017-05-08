@@ -11,6 +11,10 @@ export class DatabaseService
 	private productsList: Product[]
 	private itemsList: Item[]
 
+	private static KEY_CATEGORIES: string = 'categories';
+	private static KEY_PRODUCTS: string = 'products';
+	private static KEY_ITEMS: string = 'item';
+
 	constructor(private storage: Storage)
 	{
 		this.storage.set('age', 33)
@@ -141,6 +145,8 @@ export class DatabaseService
 
 	private updateDatabase()
 	{
+		this.storage.set('age', 33)
+
 		// TODO
 		console.log(JSON.stringify(this.categoriesList))
 		console.log(JSON.stringify(this.productsList))

@@ -21,7 +21,7 @@ export class CategoriesPage
 				private database: DatabaseService)
 	{
 		this.categories = this.database.categories()
-		this.callback   = this.navParams.get("callback")
+		this.callback   = this.navParams.get('callback')
 	}
 
 	public createCategory()

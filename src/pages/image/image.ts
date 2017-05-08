@@ -24,7 +24,7 @@ export class ImagePage
 			this.keywords = keywordsParam
 		}
 
-		this.callback = this.navParams.get("callback")
+		this.callback = this.navParams.get('callback')
 
 		this.searchImages()
 	}
@@ -46,7 +46,7 @@ export class ImagePage
 		else
 		{
 			let loader = this.loadingCtrl.create({
-				content: "Please wait..."
+				content: 'Please wait...'
 			})
 			loader.present()
 
