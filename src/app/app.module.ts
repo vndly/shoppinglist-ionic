@@ -7,6 +7,12 @@ import { CreatePage } from '../pages/create/create'
 import { CategoriesPage } from '../pages/categories/categories'
 import { ImagePage } from '../pages/image/image'
 import { ProductFilter } from '../app/filters/productFilter'
+import { ToastService } from './services/toast'
+import { DialogService } from './services/dialog'
+import { DatabaseService } from './services/database'
+import { ApiService } from './services/api'
+import { SocialSharing } from '@ionic-native/social-sharing'
+import { Storage } from '@ionic/storage'
 
 @NgModule({
 	declarations: [
@@ -21,7 +27,9 @@ import { ProductFilter } from '../app/filters/productFilter'
 	imports: [
 		IonicModule.forRoot(MyApp)
 	],
-	bootstrap: [IonicApp],
+	bootstrap: [
+		IonicApp
+	],
 	entryComponents: [
 		MyApp,
 		CartPage,
@@ -30,6 +38,17 @@ import { ProductFilter } from '../app/filters/productFilter'
 		CategoriesPage,
 		ImagePage
 	],
-	providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }]
+	providers: [
+		ToastService,
+		DialogService,
+		DatabaseService,
+		ApiService,
+		SocialSharing,
+		Storage,
+		{
+			provide: ErrorHandler,
+			useClass: IonicErrorHandler
+		}
+	]
 })
 export class AppModule { }
