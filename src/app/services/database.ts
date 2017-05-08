@@ -101,16 +101,6 @@ export class DatabaseService
 		]
 
 		this.itemsList = [
-			new Item(Product.PRODUCT_AIR_FRESHENER, false),
-			new Item(Product.PRODUCT_BANANAS, false),
-			new Item(Product.PRODUCT_COFFEE, false),
-			new Item(Product.PRODUCT_CEREALS, false),
-			new Item(Product.PRODUCT_HAIR_REMOVER, false),
-			new Item(Product.PRODUCT_PAPER_TOWELS, false),
-			new Item(Product.PRODUCT_SHAVING_FOAM, false),
-			new Item(Product.PRODUCT_TOMATO_SAUCE, false),
-			new Item(Product.PRODUCT_BLEACH, false),
-			new Item(Product.PRODUCT_CORN, false)
 		]
 	}
 
@@ -123,8 +113,8 @@ export class DatabaseService
 		if (onlyNotEmpty)
 		{
 			filtered = this.categoriesList.filter((c) => 
-				this.productsList.some((p) => (p.category.name == c.name) && 
-				(!this.itemsList.some((i) => i.product.name == p.name)))
+				this.productsList.some((p) => (p.category == c.name) && 
+				(!this.itemsList.some((i) => i.product == p.name)))
 			)
 		}
 		else
@@ -138,13 +128,13 @@ export class DatabaseService
 	public products(): Product[]
 	{
 		return this.productsList
-					.filter((product) => !this.itemsList.some((item) => item.product == product))
+					.filter((product) => !this.itemsList.some((item) => item.product == product.name))
 					.sort((p1, p2) => p1.name.localeCompare(p2.name))
 	}
 
 	public items(): Item[]
 	{
-		return this.itemsList.sort((i1, i2) => i1.product.name.localeCompare(i2.product.name))
+		return this.itemsList.sort((i1, i2) => i1.product.localeCompare(i2.product))
 	}
 
 	// -------------------------------------------------------------
@@ -152,6 +142,9 @@ export class DatabaseService
 	private updateDatabase()
 	{
 		// TODO
+		console.log(JSON.stringify(this.categoriesList))
+		console.log(JSON.stringify(this.productsList))
+		console.log(JSON.stringify(this.itemsList))
 	}
 
 	// -------------------------------------------------------------
@@ -184,8 +177,27 @@ export class DatabaseService
 		}
 		else
 		{
+			let originalName = category.name
+
 			let foundCategory: Category = this.categoryByName(category.name)
 			foundCategory.name = name
+
+			for (let product of this.productsList)
+			{
+				if (product.category == originalName)
+				{
+					product.category = name
+				}
+			}
+
+			for (let item of this.itemsList)
+			{
+				if (item.category == originalName)
+				{
+					item.category = name
+				}
+			}
+
 			this.updateDatabase()
 
 			return true
@@ -194,8 +206,8 @@ export class DatabaseService
 
 	public removeCategory(category: Category): boolean
 	{
-		let productWithCategory = this.productsList.some((p) => p.category.name == category.name)
-		let itemWithCategory = this.itemsList.some((i) => i.product.category.name == category.name)
+		let productWithCategory = this.productsList.some((p) => p.category == category.name)
+		let itemWithCategory = this.itemsList.some((i) => i.category == category.name)
 
 		if (productWithCategory || itemWithCategory)
 		{
@@ -220,8 +232,7 @@ export class DatabaseService
 		}
 		else
 		{
-			let foundCategory: Category = this.categoryByName(category)
-			this.productsList.push(new Product(foundCategory, name, image))
+			this.productsList.push(new Product(category, name, image))
 
 			return true
 		}
@@ -236,7 +247,7 @@ export class DatabaseService
 		else
 		{
 			let foundProduct: Product = this.productsList.find((p) => p.name == product.name)
-			foundProduct.category = this.categoryByName(category)
+			foundProduct.category = category
 			foundProduct.name     = name
 			foundProduct.image    = image
 
@@ -260,7 +271,7 @@ export class DatabaseService
 
 	public addItem(product: Product)
 	{
-		this.itemsList.push(new Item(product, false))
+		this.itemsList.push(new Item(product.category, product.name, product.image, false))
 		this.updateDatabase()
 	}
 }

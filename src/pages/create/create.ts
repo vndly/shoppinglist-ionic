@@ -32,7 +32,7 @@ export class CreatePage
 
 		if (this.editProduct)
 		{
-			this.inputCategory = this.editProduct.category.name
+			this.inputCategory = this.editProduct.category
 			this.inputName = this.editProduct.name
 			this.inputImage = this.editProduct.image
 		}

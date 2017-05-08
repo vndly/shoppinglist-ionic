@@ -21,10 +21,10 @@
 
 			<ion-item (click)="toggleItem(item)" [class.row-completed]="item.completed">
 				<ion-thumbnail item-left>
-						<img src="{{item.product.image}}">
+						<img src="{{item.image}}">
 				</ion-thumbnail>
 				<div [class.completed]="item.completed">
-					{{item.product.name}}
+					{{item.product}}
 				</div>
 				<ion-icon *ngIf="item.completed" name="ios-checkmark" item-right></ion-icon>
 			</ion-item>

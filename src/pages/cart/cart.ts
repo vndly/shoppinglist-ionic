@@ -30,7 +30,7 @@ export class CartPage
 
 		for (let item of this.items)
 		{
-			message += item.product.name + '\n'
+			message += item.product + '\n'
 		}
 
 		this.socialSharing.share(message)
@@ -61,7 +61,7 @@ export class CartPage
 	public removeItem(item: Item)
 	{
 		this.dialog.confirmation(
-			'Do you want to remove <b>' + item.product.name + '</b> from the cart?',
+			'Do you want to remove <b>' + item.product + '</b> from the cart?',
 			'Remove',
 			() => {
 				this.removeItemFromCart(item)
