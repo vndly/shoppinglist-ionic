@@ -79,4 +79,15 @@ export class CartPage
 	{
 		this.refreshItems()
 	}
+
+	public ionViewWillLeave()
+	{
+		for (let item of this.items)
+		{
+			if (item.completed)
+			{
+				this.database.removeItem(item)
+			}
+		}
+	}
 }
