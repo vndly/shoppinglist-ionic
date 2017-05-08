@@ -46,7 +46,7 @@ export class ImagePage
 		else
 		{
 			let loader = this.loadingCtrl.create({
-				content: 'Please wait...'
+				content: 'Loading...'
 			})
 			loader.present()
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController } from 'ionic-angular'
+import { NavController, LoadingController } from 'ionic-angular'
 import { SocialSharing } from '@ionic-native/social-sharing'
 import { AddPage } from '../add/add'
 import { Item } from '../../app/models/item'
@@ -16,12 +16,23 @@ export class CartPage
 	private items: Item[]
 
 	constructor(private navCtrl: NavController,
+				private loadingCtrl: LoadingController,
 				private socialSharing: SocialSharing,
 				private toast: ToastService,
 				private dialog: DialogService,
 				private database: DatabaseService)
 	{
-		this.refreshItems()
+		let loader = this.loadingCtrl.create({
+			content: 'Loading...'
+		})
+		loader.present()
+
+		let callback = () => {
+			this.refreshItems()
+			loader.dismiss()
+		}
+
+		this.database.start(callback)
 	}
 
 	public shareCart()

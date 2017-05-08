@@ -28,7 +28,11 @@ export class AddPage
 	{
 		this.categories   = this.database.categories(true)
 		this.products     = this.database.products()
-		this.categoryName = this.categories[0].name
+
+		if (this.categories.length > 0)
+		{
+			this.categoryName = this.categories[0].name
+		}
 	}
 
 	public slideChanged()

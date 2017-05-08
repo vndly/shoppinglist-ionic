@@ -7,21 +7,49 @@ import { Item } from '../models/item'
 @Injectable()
 export class DatabaseService
 {
-	private categoriesList: Category[]
-	private productsList: Product[]
-	private itemsList: Item[]
+	private categoriesList: Category[] = []
+	private productsList: Product[] = []
+	private itemsList: Item[] = []
 
 	private static KEY_CATEGORIES: string = 'categories';
 	private static KEY_PRODUCTS: string = 'products';
 	private static KEY_ITEMS: string = 'item';
+	private static KEY_INITIALIZED: string = 'initialized';
 
 	constructor(private storage: Storage)
 	{
-		this.storage.set('age', 33)
-		this.storage.get('age').then((val) => {
-        	console.log('Your age is', val)
-		})
+	}
 
+	public start(callback: () => any)
+	{
+		this.storage.get(DatabaseService.KEY_INITIALIZED).then((initialized) => {
+        	if (!initialized)
+			{
+				this.storage.set(DatabaseService.KEY_INITIALIZED, true)
+				this.initializeDatabase()
+				this.updateDatabase(callback)
+			}
+			else
+			{
+				this.storage.get(DatabaseService.KEY_CATEGORIES).then((json) => {
+					this.categoriesList = JSON.parse(json)
+
+					this.storage.get(DatabaseService.KEY_PRODUCTS).then((json) => {
+						this.productsList = JSON.parse(json)
+
+						this.storage.get(DatabaseService.KEY_ITEMS).then((json) => {
+							this.itemsList = JSON.parse(json)
+
+							callback()
+						})
+					})
+				})
+			}
+		})
+	}
+
+	private initializeDatabase()
+	{
 		this.categoriesList = [
 			Category.CATEGORY_BEVERAGES,
 			Category.CATEGORY_BREAD_AND_GRAIN_PRODUCTS,
@@ -50,7 +78,6 @@ export class DatabaseService
 			Product.PRODUCT_COFFEE_CREAM,
 			Product.PRODUCT_CORN,
 			Product.PRODUCT_OIL,
-			//Product.PRODUCT_RICOLA,
 			Product.PRODUCT_SALT,
 			Product.PRODUCT_SOUP,
 			Product.PRODUCT_SUGAR,
@@ -63,7 +90,6 @@ export class DatabaseService
 
 			Product.PRODUCT_BANANAS,
 			Product.PRODUCT_CARROTS,
-			//Product.PRODUCT_ONION,
 			Product.PRODUCT_POTATOES,
 
 			Product.PRODUCT_AIR_FRESHENER,
@@ -85,7 +111,6 @@ export class DatabaseService
 			Product.PRODUCT_SOAP,
 			Product.PRODUCT_SPONGE,
 			Product.PRODUCT_SPONGE_METAL,
-			//Product.PRODUCT_SWIFFER,
 			Product.PRODUCT_TOILET_PAPER,
 			Product.PRODUCT_TOOTHBRUSH,
 			Product.PRODUCT_TOOTHPASTE,
@@ -143,14 +168,18 @@ export class DatabaseService
 
 	// -------------------------------------------------------------
 
-	private updateDatabase()
+	private updateDatabase(callback: () => any = null)
 	{
-		this.storage.set('age', 33)
-
-		// TODO
-		console.log(JSON.stringify(this.categoriesList))
-		console.log(JSON.stringify(this.productsList))
-		console.log(JSON.stringify(this.itemsList))
+		this.storage.set(DatabaseService.KEY_CATEGORIES, JSON.stringify(this.categoriesList)).then((result) => {
+			this.storage.set(DatabaseService.KEY_PRODUCTS, JSON.stringify(this.productsList)).then((restult) => {
+				this.storage.set(DatabaseService.KEY_ITEMS, JSON.stringify(this.itemsList)).then((result) => {
+					if (callback)
+					{
+						callback()
+					}
+				})
+			})
+		})
 	}
 
 	// -------------------------------------------------------------
