@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core'
+import { Storage } from '@ionic/storage'
 import { Category } from '../models/category'
 import { Product } from '../models/product'
 import { Item } from '../models/item'
@@ -10,8 +11,13 @@ export class DatabaseService
 	private productsList: Product[]
 	private itemsList: Item[]
 
-	constructor()
+	constructor(private storage: Storage)
 	{
+		this.storage.set('age', 33)
+		this.storage.get('age').then((val) => {
+        	console.log('Your age is', val)
+		})
+
 		this.categoriesList = [
 			Category.CATEGORY_BEVERAGES,
 			Category.CATEGORY_BREAD_AND_GRAIN_PRODUCTS,

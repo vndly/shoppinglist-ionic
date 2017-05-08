@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
-import { Http, Headers } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { Http, Headers } from '@angular/http'
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class ApiService
@@ -29,7 +29,7 @@ export class ApiService
 				{
 					if ((i + (size - 1)) < list.length)
 					{
-						var row = new Array();
+						var row = new Array()
 
 						for (var j = 0; j < size; j++)
 						{
