@@ -9,9 +9,9 @@ export class Product
 	// Beverages
 	public static PRODUCT_BEER: Product = new Product(Category.CATEGORY_BEVERAGES.name, 'Beer', 'http://i.imgur.com/WmfEenJ.png')
 	public static PRODUCT_COFFEE: Product = new Product(Category.CATEGORY_BEVERAGES.name, 'Coffee', 'http://i.imgur.com/aGiXxjf.png')
+	public static PRODUCT_ICE_TEA: Product = new Product(Category.CATEGORY_BEVERAGES.name, 'Ice Tea', 'http://i.imgur.com/Spi8duE.png')
 	public static PRODUCT_SODA: Product = new Product(Category.CATEGORY_BEVERAGES.name, 'Soda', 'http://i.imgur.com/jybjFMf.png')
 	public static PRODUCT_WATER: Product = new Product(Category.CATEGORY_BEVERAGES.name, 'Water', 'http://i.imgur.com/h34kKfv.png')
-	public static PRODUCT_ICE_TEA: Product = new Product(Category.CATEGORY_BEVERAGES.name, 'Ice Tea', 'http://i.imgur.com/Spi8duE.png')
 
 	// Bread & Grain Products
 	public static PRODUCT_BAGUETTE: Product = new Product(Category.CATEGORY_BREAD_AND_GRAIN_PRODUCTS.name, 'Baguette', 'http://i.imgur.com/6tf1nXp.png')
@@ -32,13 +32,18 @@ export class Product
 
 	// Frozen
 	public static PRODUCT_FISH_STICKS: Product = new Product(Category.CATEGORY_FROZEN.name, 'Fish sticks', 'http://i.imgur.com/HpCxIrW.png')
+	public static PRODUCT_FRENCH_FRIES: Product = new Product(Category.CATEGORY_FROZEN.name, 'French fries', 'http://i.imgur.com/KsWRC0d.png')
+	public static PRODUCT_ICE_CREAM: Product = new Product(Category.CATEGORY_FROZEN.name, 'Ice cream', 'http://i.imgur.com/Jku9Mjy.png')
 	public static PRODUCT_LASAGNA: Product = new Product(Category.CATEGORY_FROZEN.name, 'Lasagna', 'http://i.imgur.com/yizvszE.png')
 	public static PRODUCT_NUGGETS: Product = new Product(Category.CATEGORY_FROZEN.name, 'Nuggets', 'http://i.imgur.com/uzuI4UK.png')
 	public static PRODUCT_PIZZA: Product = new Product(Category.CATEGORY_FROZEN.name, 'Pizza', 'http://i.imgur.com/Kc7PiH9.png')
 
 	// Fruits & Vegetables
+	public static PRODUCT_APPLES: Product = new Product(Category.CATEGORY_FRUITS_AND_VEGETABLES.name, 'Apples', 'http://i.imgur.com/hkNdwlF.png')
 	public static PRODUCT_BANANAS: Product = new Product(Category.CATEGORY_FRUITS_AND_VEGETABLES.name, 'Bananas', 'http://i.imgur.com/edf83Ow.png')
 	public static PRODUCT_CARROTS: Product = new Product(Category.CATEGORY_FRUITS_AND_VEGETABLES.name, 'Carrots', 'http://i.imgur.com/rEUNdI0.png')
+	public static PRODUCT_LEMONS: Product = new Product(Category.CATEGORY_FRUITS_AND_VEGETABLES.name, 'Lemons', 'http://i.imgur.com/i8wwGmB.png')
+	public static PRODUCT_LETTUCE: Product = new Product(Category.CATEGORY_FRUITS_AND_VEGETABLES.name, 'Lettuce', 'http://i.imgur.com/NIguQT1.png')
 	public static PRODUCT_TOMATOES: Product = new Product(Category.CATEGORY_FRUITS_AND_VEGETABLES.name, 'Tomatoes', 'http://i.imgur.com/We5LRdn.png')
 	public static PRODUCT_POTATOES: Product = new Product(Category.CATEGORY_FRUITS_AND_VEGETABLES.name, 'Potatoes', 'http://i.imgur.com/by3SaCG.png')
 
@@ -72,9 +77,12 @@ export class Product
 	public static PRODUCT_HAM: Product = new Product(Category.CATEGORY_MEAT_AND_FISH.name, 'Ham', 'http://i.imgur.com/TSGTD5X.png')
 	public static PRODUCT_MEAT: Product = new Product(Category.CATEGORY_MEAT_AND_FISH.name, 'Meat', 'http://i.imgur.com/NnvqpgY.png')
 	public static PRODUCT_PORK: Product = new Product(Category.CATEGORY_MEAT_AND_FISH.name, 'Pork', 'http://i.imgur.com/GnjFKmN.png')
+	public static PRODUCT_SALAMI: Product = new Product(Category.CATEGORY_MEAT_AND_FISH.name, 'Salami', 'http://i.imgur.com/Pddvg7H.png')
+	public static PRODUCT_SARDINES: Product = new Product(Category.CATEGORY_MEAT_AND_FISH.name, 'Sardines', 'http://i.imgur.com/wU9AVs3.png')
 	public static PRODUCT_TUNA: Product = new Product(Category.CATEGORY_MEAT_AND_FISH.name, 'Tuna', 'http://i.imgur.com/M959WKh.png')
 
 	// Milk & Cheese
+	public static PRODUCT_BUTTER: Product = new Product(Category.CATEGORY_MILK_AND_CHEESE.name, 'Butter', 'http://i.imgur.com/GgQnfPI.png')
 	public static PRODUCT_CHEESE: Product = new Product(Category.CATEGORY_MILK_AND_CHEESE.name, 'Cheese', 'http://i.imgur.com/UvK6s35.png')
 	public static PRODUCT_EGGS: Product = new Product(Category.CATEGORY_MILK_AND_CHEESE.name, 'Eggs', 'http://i.imgur.com/6gw4RrK.png')
 	public static PRODUCT_GRATED_CHEESE: Product = new Product(Category.CATEGORY_MILK_AND_CHEESE.name, 'Grated cheese', 'http://i.imgur.com/VgN12fA.png')

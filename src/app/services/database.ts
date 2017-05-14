@@ -64,9 +64,9 @@ export class DatabaseService
 		this.productsList = [
 			Product.PRODUCT_BEER,
 			Product.PRODUCT_COFFEE,
+			Product.PRODUCT_ICE_TEA,
 			Product.PRODUCT_SODA,
 			Product.PRODUCT_WATER,
-			Product.PRODUCT_ICE_TEA,
 
 			Product.PRODUCT_BAGUETTE,
 			Product.PRODUCT_CEREALS,
@@ -84,12 +84,18 @@ export class DatabaseService
 			Product.PRODUCT_TOMATO_SAUCE,
 
 			Product.PRODUCT_FISH_STICKS,
+			Product.PRODUCT_FRENCH_FRIES,
+			Product.PRODUCT_ICE_CREAM,
 			Product.PRODUCT_LASAGNA,
 			Product.PRODUCT_NUGGETS,
 			Product.PRODUCT_PIZZA,
 
+			Product.PRODUCT_APPLES,
 			Product.PRODUCT_BANANAS,
 			Product.PRODUCT_CARROTS,
+			Product.PRODUCT_LEMONS,
+			Product.PRODUCT_LETTUCE,
+			Product.PRODUCT_TOMATOES,
 			Product.PRODUCT_POTATOES,
 
 			Product.PRODUCT_AIR_FRESHENER,
@@ -120,8 +126,11 @@ export class DatabaseService
 			Product.PRODUCT_HAM,
 			Product.PRODUCT_MEAT,
 			Product.PRODUCT_PORK,
+			Product.PRODUCT_SALAMI,
+			Product.PRODUCT_SARDINES,
 			Product.PRODUCT_TUNA,
 
+			Product.PRODUCT_BUTTER,
 			Product.PRODUCT_CHEESE,
 			Product.PRODUCT_EGGS,
 			Product.PRODUCT_GRATED_CHEESE,
