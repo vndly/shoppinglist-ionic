@@ -8,12 +8,24 @@ export class ToastService
 	{
 	}
 
-	public show(text)
+	public show(text: string)
 	{
 		let toast = this.toastCtrl.create({
-			message: '' + text,
+			message: text,
 			duration: 3000,
 			position: 'bottom'
+		})
+		toast.present()
+	}
+
+	public help(text: string)
+	{
+		let toast = this.toastCtrl.create({
+			message: text,
+			position: 'bottom',
+			dismissOnPageChange: true,
+			showCloseButton: true,
+			closeButtonText: 'OK'
 		})
 		toast.present()
 	}

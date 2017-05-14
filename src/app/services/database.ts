@@ -14,7 +14,9 @@ export class DatabaseService
 	private static KEY_CATEGORIES: string = 'categories';
 	private static KEY_PRODUCTS: string = 'products';
 	private static KEY_ITEMS: string = 'item';
-	private static KEY_INITIALIZED: string = 'initialized';
+
+	private static KEY_FLAT_INITIALIZED: string = 'flag.initialized';
+	private static KEY_FLAT_TIP_CART: string = 'flag.tip.cart';
 
 	constructor(private storage: Storage)
 	{
@@ -22,10 +24,10 @@ export class DatabaseService
 
 	public start(callback: () => any)
 	{
-		this.storage.get(DatabaseService.KEY_INITIALIZED).then((initialized) => {
+		this.storage.get(DatabaseService.KEY_FLAT_INITIALIZED).then((initialized) => {
         	if (!initialized)
 			{
-				this.storage.set(DatabaseService.KEY_INITIALIZED, true)
+				this.storage.set(DatabaseService.KEY_FLAT_INITIALIZED, true)
 				this.initializeDatabase()
 				this.updateDatabase(callback)
 			}
@@ -317,5 +319,23 @@ export class DatabaseService
 	{
 		this.itemsList.push(new Item(product.category, product.name, product.image, false))
 		this.updateDatabase()
+	}
+
+	// -------------------------------------------------------------
+
+	public tipCart(callback: () => any)
+	{
+		this.checkFlag(DatabaseService.KEY_FLAT_TIP_CART, callback)
+	}
+
+	public checkFlag(key: string, callback: () => any)
+	{
+		this.storage.get(key).then((enabled) => {
+			if (!enabled)
+			{
+				this.storage.set(key, true)
+				callback()
+			}
+		})
 	}
 }

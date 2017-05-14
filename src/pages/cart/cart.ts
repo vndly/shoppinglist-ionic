@@ -33,6 +33,10 @@ export class CartPage
 		}
 
 		this.database.start(callback)
+
+		this.database.tipCart(() => {
+			this.toast.help('Press the plus icon on the top-right corner to add a product to the cart')
+		})
 	}
 
 	public shareCart()
