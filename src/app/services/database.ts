@@ -17,7 +17,9 @@ export class DatabaseService
 
 	private static KEY_FLAT_INITIALIZED: string = 'flag.initialized'
 	private static KEY_FLAT_TIP_CART: string = 'flag.tip.cart'
-	private static KEY_FLAT_TIP_ADD: string = 'flag.tip.add3'
+	private static KEY_FLAT_TIP_ADD: string = 'flag.tip.add'
+	private static KEY_FLAT_TIP_CREATE: string = 'flag.tip.create'
+	private static KEY_FLAT_TIP_CATEGORIES: string = 'flag.tip.categories'
 
 	constructor(private storage: Storage)
 	{
@@ -332,6 +334,16 @@ export class DatabaseService
 	public tipAdd(callback: () => any)
 	{
 		this.checkFlag(DatabaseService.KEY_FLAT_TIP_ADD, callback)
+	}
+
+	public tipCreate(callback: () => any)
+	{
+		this.checkFlag(DatabaseService.KEY_FLAT_TIP_CREATE, callback)
+	}
+
+	public tipCategories(callback: () => any)
+	{
+		this.checkFlag(DatabaseService.KEY_FLAT_TIP_CATEGORIES, callback)
 	}
 
 	public checkFlag(key: string, callback: () => any)

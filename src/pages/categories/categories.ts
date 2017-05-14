@@ -24,6 +24,13 @@ export class CategoriesPage
 		this.callback   = this.navParams.get('callback')
 	}
 
+	public ionViewDidEnter()
+	{
+		this.database.tipCategories(() => {
+			this.toast.help('Swipe a row to the left to see the options')
+		})
+	}
+
 	public createCategory()
 	{
 		this.dialog.prompt(

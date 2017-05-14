@@ -38,6 +38,13 @@ export class CreatePage
 		}
 	}
 
+	public ionViewDidEnter()
+	{
+		this.database.tipCreate(() => {
+			this.toast.help('Click on the blue picture icon to search for an image')
+		})
+	}
+
 	public searchImage()
 	{
 		let callback = (imageUrl) => {
