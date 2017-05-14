@@ -1,2 +1,2 @@
-# Shopping List Ionic
-Work in progress...
+# Shopping List
+This is the Ionic version of a simple and straightforward shopping list. Swipe between the categories and click on the products to add them to the list. You can prepare your list at home so you don't forget anything. Once in the shop, click on the products on the list to mark them as already in the cart. When you exit the cart list, all the products that were in the cart will be removed from the list automatically. You can also create, edit and delete your own products and categories to adapt the app your your needs. To access to more options on an item, just swipe to left.
