@@ -11,12 +11,13 @@ export class DatabaseService
 	private productsList: Product[] = []
 	private itemsList: Item[] = []
 
-	private static KEY_CATEGORIES: string = 'categories';
-	private static KEY_PRODUCTS: string = 'products';
-	private static KEY_ITEMS: string = 'item';
+	private static KEY_CATEGORIES: string = 'categories'
+	private static KEY_PRODUCTS: string = 'products'
+	private static KEY_ITEMS: string = 'item'
 
-	private static KEY_FLAT_INITIALIZED: string = 'flag.initialized';
-	private static KEY_FLAT_TIP_CART: string = 'flag.tip.cart';
+	private static KEY_FLAT_INITIALIZED: string = 'flag.initialized'
+	private static KEY_FLAT_TIP_CART: string = 'flag.tip.cart'
+	private static KEY_FLAT_TIP_ADD: string = 'flag.tip.add3'
 
 	constructor(private storage: Storage)
 	{
@@ -326,6 +327,11 @@ export class DatabaseService
 	public tipCart(callback: () => any)
 	{
 		this.checkFlag(DatabaseService.KEY_FLAT_TIP_CART, callback)
+	}
+
+	public tipAdd(callback: () => any)
+	{
+		this.checkFlag(DatabaseService.KEY_FLAT_TIP_ADD, callback)
 	}
 
 	public checkFlag(key: string, callback: () => any)

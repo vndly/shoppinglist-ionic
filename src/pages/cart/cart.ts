@@ -22,6 +22,10 @@ export class CartPage
 				private dialog: DialogService,
 				private database: DatabaseService)
 	{
+	}
+
+	public ionViewDidLoad()
+	{
 		let loader = this.loadingCtrl.create({
 			content: 'Loading...'
 		})
@@ -30,13 +34,29 @@ export class CartPage
 		let callback = () => {
 			this.refreshItems()
 			loader.dismiss()
+
+			this.database.tipCart(() => {
+				this.toast.help('Press the plus icon on the top-right corner to add a product to the cart')
+			})
 		}
 
 		this.database.start(callback)
+	}
 
-		this.database.tipCart(() => {
-			this.toast.help('Press the plus icon on the top-right corner to add a product to the cart')
-		})
+	public ionViewWillEnter()
+	{
+		this.refreshItems()
+	}
+
+	public ionViewWillLeave()
+	{
+		for (let item of this.items)
+		{
+			if (item.completed)
+			{
+				this.database.removeItem(item)
+			}
+		}
 	}
 
 	public shareCart()
@@ -88,21 +108,5 @@ export class CartPage
 	{
 		this.database.removeItem(item)
 		this.refreshItems()
-	}
-
-	public ionViewWillEnter()
-	{
-		this.refreshItems()
-	}
-
-	public ionViewWillLeave()
-	{
-		for (let item of this.items)
-		{
-			if (item.completed)
-			{
-				this.database.removeItem(item)
-			}
-		}
 	}
 }

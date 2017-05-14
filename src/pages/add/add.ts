@@ -26,13 +26,20 @@ export class AddPage
 				private dialog: DialogService,
 				private database: DatabaseService)
 	{
-		this.categories   = this.database.categories(true)
-		this.products     = this.database.products()
+		this.categories = this.database.categories(true)
+		this.products   = this.database.products()
 
 		if (this.categories.length > 0)
 		{
 			this.categoryName = this.categories[0].name
 		}
+	}
+
+	public ionViewDidEnter()
+	{
+		this.database.tipAdd(() => {
+			this.toast.help('Swipe left and right to switch categories')
+		})
 	}
 
 	public slideChanged()
