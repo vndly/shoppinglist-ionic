@@ -50,13 +50,20 @@ export class CategoriesPage
 
 	private addCategory(name: string)
 	{
-		if (this.database.addCategory(name))
+		if (name)
 		{
-			this.refreshCategories()
+			if (this.database.addCategory(name))
+			{
+				this.refreshCategories()
+			}
+			else
+			{
+				this.dialog.error('Cannot create category', 'There is another category with the same name')
+			}
 		}
 		else
 		{
-			this.dialog.error('Cannot create category', 'There is another category with the same name')
+			this.toast.show('Invalid name')
 		}
 	}
 
@@ -80,13 +87,20 @@ export class CategoriesPage
 
 	private renameCategory(category: Category, name: string)
 	{
-		if (this.database.renameCategory(category, name))
+		if (name)
 		{
-			this.refreshCategories()
+			if (this.database.renameCategory(category, name))
+			{
+				this.refreshCategories()
+			}
+			else
+			{
+				this.dialog.error('Cannot rename category', 'There is another category with the same name')
+			}
 		}
 		else
 		{
-			this.dialog.error('Cannot rename category', 'There is another category with the same name')
+			this.toast.show('Invalid name')
 		}
 	}
 
