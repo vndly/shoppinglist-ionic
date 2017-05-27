@@ -43,8 +43,14 @@ export class CartPage
 		this.database.start(callback)
 
 		document.addEventListener('pause', () => {
-        	this.refreshItems()
-    	});
+			this.reloadItems()
+		}, false);
+	}
+
+	public reloadItems()
+	{
+		this.ionViewWillLeave()
+		this.refreshItems()
 	}
 
 	public ionViewWillEnter()
@@ -82,7 +88,7 @@ export class CartPage
 		this.refreshItems()
 	}
 
-	private refreshItems()
+	public refreshItems()
 	{
 		let itemList = this.database.items()
 
