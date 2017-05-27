@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController, LoadingController, Events } from 'ionic-angular'
+import { NavController, LoadingController } from 'ionic-angular'
 import { SocialSharing } from '@ionic-native/social-sharing'
 import { AddPage } from '../add/add'
 import { Item } from '../../app/models/item'
@@ -17,7 +17,6 @@ export class CartPage
 
 	constructor(private navCtrl: NavController,
 				private loadingCtrl: LoadingController,
-				private events: Events,
 				private socialSharing: SocialSharing,
 				private toast: ToastService,
 				private dialog: DialogService,
@@ -43,9 +42,9 @@ export class CartPage
 
 		this.database.start(callback)
 
-		this.events.subscribe('pause', () => {
-			this.refreshItems()
-		})
+		document.addEventListener('pause', () => {
+        	this.refreshItems()
+    	});
 	}
 
 	public ionViewWillEnter()
