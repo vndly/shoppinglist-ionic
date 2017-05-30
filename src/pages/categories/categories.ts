@@ -87,20 +87,23 @@ export class CategoriesPage
 
 	private renameCategory(category: Category, name: string)
 	{
-		if (name)
+		if (category.name != name)
 		{
-			if (this.database.renameCategory(category, name))
+			if (name)
 			{
-				this.refreshCategories()
+				if (this.database.renameCategory(category, name))
+				{
+					this.refreshCategories()
+				}
+				else
+				{
+					this.dialog.error('Cannot rename category', 'There is another category with the same name')
+				}
 			}
 			else
 			{
-				this.dialog.error('Cannot rename category', 'There is another category with the same name')
+				this.toast.show('Invalid name')
 			}
-		}
-		else
-		{
-			this.toast.show('Invalid name')
 		}
 	}
 
