@@ -34,7 +34,7 @@ export class CategoriesPage
 	public createCategory()
 	{
 		this.dialog.prompt(
-			'Create',
+			'Category name',
 			[
 				{
 					name: 'name',
@@ -70,7 +70,7 @@ export class CategoriesPage
 	public editCategory(category: Category, item)
 	{
 		this.dialog.prompt(
-			'Rename',
+			'Category name',
 			[
 				{
 					name: 'name',
