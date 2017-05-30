@@ -4,11 +4,11 @@
 			Shopping List
 		</ion-title>
 		<ion-buttons end>
-			<button ion-button icon-only (click)="shareCart()">
+			<button *ngIf="itemsInList" ion-button icon-only (click)="shareCart()" style="margin-right:10px">
 				<ion-icon name="ios-share-outline"></ion-icon>
 			</button>
 			<button ion-button icon-only (click)="addProduct()">
-				<ion-icon name="add"></ion-icon>
+				<ion-icon style="font-size:40px" name="add"></ion-icon>
 			</button>
 		</ion-buttons>
 	</ion-navbar>

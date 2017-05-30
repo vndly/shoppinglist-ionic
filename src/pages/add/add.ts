@@ -17,6 +17,8 @@ export class AddPage
 	private categoryName: string = ''
 	private categories: Category[]
 	private products: Product[]
+	private notFirst: boolean = false
+	private notLast: boolean = false
 
 	@ViewChild(Slides) slides: Slides
 
@@ -35,6 +37,16 @@ export class AddPage
 		}
 	}
 
+	public previous()
+	{
+		this.slides.slidePrev()
+	}
+
+	public next()
+	{
+		this.slides.slideNext()
+	}
+
 	public ionViewDidEnter()
 	{
 		this.database.tipAdd(() => {
@@ -45,6 +57,9 @@ export class AddPage
 	public slideChanged()
 	{
 		let currentIndex = this.slides.getActiveIndex()
+
+		this.notFirst = currentIndex > 0
+		this.notLast  = currentIndex < (this.categories.length - 1)
 
 		if (currentIndex < this.categories.length)
 		{

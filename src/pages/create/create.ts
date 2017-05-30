@@ -14,6 +14,7 @@ import { DatabaseService } from '../../app/services/database'
 })
 export class CreatePage
 {
+	private title: string = ''
 	private categories: Category[]
 	private inputCategory: string = ''
 	private inputName: string  = ''
@@ -32,9 +33,14 @@ export class CreatePage
 
 		if (this.editProduct)
 		{
+			this.title = 'Edit product'
 			this.inputCategory = this.editProduct.category
 			this.inputName = this.editProduct.name
 			this.inputImage = this.editProduct.image
+		}
+		else
+		{
+			this.title = 'Create product'
 		}
 	}
 
