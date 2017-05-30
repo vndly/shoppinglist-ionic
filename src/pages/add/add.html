@@ -14,7 +14,11 @@
 <ion-content>
 
 	<ion-list-header class="list-header">
-		<div style="text-align: center">{{categoryName}}</div>
+		<ion-icon *ngIf="notFirst" item-left style="font-size:30px;color:#888" name="ios-arrow-dropleft-outline" (click)="previous()"></ion-icon>
+		<div style="text-align: center">
+			{{categoryName}}
+		</div>
+		<ion-icon *ngIf="notLast" item-right style="font-size:30px;color:#888" name="ios-arrow-dropright-outline" (click)="next()"></ion-icon>
 	</ion-list-header>
 
 	<ion-slides (ionSlideDidChange)="slideChanged()" style="height: auto">
