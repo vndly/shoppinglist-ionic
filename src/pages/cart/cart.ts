@@ -14,6 +14,7 @@ import { DatabaseService } from '../../app/services/database'
 export class CartPage
 {
 	private items: Item[]
+	private itemsInList: boolean = false
 
 	constructor(private navCtrl: NavController,
 				private loadingCtrl: LoadingController,
@@ -78,7 +79,10 @@ export class CartPage
 			message += item.product + '\n'
 		}
 
-		this.socialSharing.share(message)
+		if (message.length > 0)
+		{
+			this.socialSharing.share(message)
+		}
 	}
 
 	public toggleItem(item: Item)
@@ -96,6 +100,8 @@ export class CartPage
 		var completed: Item[] = itemList.filter((item: Item) => item.completed)
 
 		this.items = incompleted.concat(completed)
+
+		this.itemsInList = incompleted.length > 0
 	}
 
 	public addProduct()
