@@ -14,11 +14,13 @@ import { DatabaseService } from '../../app/services/database'
 })
 export class AddPage
 {
-	private categoryName: string = ''
+	private selectedCategory: string = ''
 	private categories: Category[]
 	private products: Product[]
 	private notFirst: boolean = false
 	private notLast: boolean = false
+	private selectOptions
+	
 
 	@ViewChild(Slides) slides: Slides
 
@@ -33,18 +35,13 @@ export class AddPage
 
 		if (this.categories.length > 0)
 		{
-			this.categoryName = this.categories[0].name
+			this.selectedCategory = this.categories[0].name
 		}
-	}
 
-	public previous()
-	{
-		this.slides.slidePrev()
-	}
-
-	public next()
-	{
-		this.slides.slideNext()
+		this.selectOptions = {
+			title: 'Category',
+			mode: 'md'
+		}
 	}
 
 	public ionViewDidEnter()
@@ -63,7 +60,19 @@ export class AddPage
 
 		if (currentIndex < this.categories.length)
 		{
-			this.categoryName = this.categories[currentIndex].name
+			this.selectedCategory = this.categories[currentIndex].name
+		}
+	}
+
+	public categorySelected($event)
+	{
+		for (var i = 0; i < this.categories.length; i++)
+		{
+			if (this.categories[i].name == $event)
+			{
+				this.slides.slideTo(i)
+				break
+			}
 		}
 	}
 

@@ -13,13 +13,11 @@
 
 <ion-content>
 
-	<ion-list-header class="list-header">
-		<ion-icon *ngIf="notFirst" item-left style="font-size:30px;color:#888" name="ios-arrow-dropleft-outline" (click)="previous()"></ion-icon>
-		<div style="text-align: center">
-			{{categoryName}}
-		</div>
-		<ion-icon *ngIf="notLast" item-right style="font-size:30px;color:#888" name="ios-arrow-dropright-outline" (click)="next()"></ion-icon>
-	</ion-list-header>
+	<ion-item style="background-color:#EFEFF4">
+		<ion-select [selectOptions]="selectOptions" (ngModelChange)="categorySelected($event)" [(ngModel)]="selectedCategory" interface="action-sheet" class="category-select" multiple="false">
+			<ion-option *ngFor="let category of categories" value="{{category.name}}" multiple="false">{{category.name}}</ion-option>
+		</ion-select>
+	</ion-item>
 
 	<ion-slides (ionSlideDidChange)="slideChanged()" style="height: auto">
 		
