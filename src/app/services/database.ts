@@ -273,17 +273,18 @@ export class DatabaseService
 
 	// -------------------------------------------------------------
 
-	public createProduct(category: string, name: string, image: string): boolean
+	public createProduct(category: string, name: string, image: string): Product
 	{
 		if (this.productsList.some((p) => p.name == name))
 		{
-			return false
+			return null
 		}
 		else
 		{
-			this.productsList.push(new Product(category, name, image))
+			var newProduct:Product = new Product(category, name, image)
+			this.productsList.push(newProduct)
 
-			return true
+			return newProduct
 		}
 	}
 

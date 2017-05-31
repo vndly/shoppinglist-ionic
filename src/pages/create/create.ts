@@ -21,6 +21,7 @@ export class CreatePage
 	private inputImage: string = ''
 	private defaultImage: string = 'http://i.imgur.com/OkHEj66.png'
 	private editProduct: Product
+	private addToCart: boolean = true
 
 	constructor(private navCtrl: NavController,
 				private navParams: NavParams,
@@ -120,8 +121,15 @@ export class CreatePage
 
 	private addProduct(category: string, name: string, image: string)
 	{
-		if (this.database.createProduct(category, name, image))
+		var createdProduct:Product = this.database.createProduct(category, name, image)
+
+		if (createdProduct != null)
 		{
+			if (this.addToCart)
+			{
+				this.database.addItem(createdProduct)
+			}
+		
 			this.navCtrl.pop()
 		}
 		else

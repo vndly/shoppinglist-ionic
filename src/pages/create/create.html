@@ -45,5 +45,12 @@
 	<div class="create-product-button">
 		<button (click)="createProduct()" class="button button-ios button-default button-default-ios button-block button-block-ios" ion-button>{{(this.editProduct != null) ? 'Update' : 'Create'}}</button>
 	</div>
+ 
+ 	<ion-list no-lines style="margin-top:15px">
+		<ion-item class="item-borderless">
+			<ion-checkbox [(ngModel)]="addToCart"></ion-checkbox>
+			<ion-label>Add to cart automatically</ion-label>
+		</ion-item>
+	</ion-list>
 
 </ion-content>
