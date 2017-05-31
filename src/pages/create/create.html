@@ -13,28 +13,34 @@
 
 <ion-content>
 	
-	<ion-list no-lines>
+	<ion-list no-lines style="margin-bottom:25px">
 
 		<ion-list-header class="list-header">Category</ion-list-header>
+		<div style="height:1px;width:100%;background-color:#DDDDDD"></div>
 		<ion-item>
 			<ion-label>Category</ion-label>
 			<ion-select [(ngModel)]="inputCategory" class="category-select" placeholder="Category">
 				<ion-option *ngFor="let category of categories" value="{{category.name}}" multiple="false">{{category.name}}</ion-option>
 			</ion-select>
 		</ion-item>
+		<div style="height:1px;width:100%;background-color:#DDDDDD"></div>
 
 		<ion-list-header class="list-header">Name</ion-list-header>
+		<div style="height:1px;width:100%;background-color:#DDDDDD"></div>
 		<ion-item>
 			<ion-input style="padding-left:16px" type="text" [(ngModel)]="inputName" placeholder="Name"></ion-input>
 		</ion-item>
+		<div style="height:1px;width:100%;background-color:#DDDDDD"></div>
 
 		<ion-list-header class="list-header">Image</ion-list-header>
+		<div style="height:1px;width:100%;background-color:#DDDDDD"></div>
 		<ion-item>
 			<ion-input style="padding-left:16px" type="url" [(ngModel)]="inputImage" placeholder="http://i.imgur.com/OkHEj66.png"></ion-input>
 			<button style="padding:10px" ion-button icon-only item-right clear (click)="searchImage()">
 				<ion-icon style="font-size:30px" name="ios-image-outline"></ion-icon>
 			</button>
 		</ion-item>
+		<div style="height:1px;width:100%;background-color:#DDDDDD"></div>
 
 	</ion-list>
 
