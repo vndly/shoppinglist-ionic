@@ -18,21 +18,21 @@
 		<ion-list-header class="list-header">Category</ion-list-header>
 		<div style="height:1px;width:100%;background-color:#DDDDDD"></div>
 		<ion-item>
-			<ion-input style="padding-left:16px" type="text" (click)="openCategoryDialog()" [(ngModel)]="inputCategory" placeholder="Category"></ion-input>
+			<ion-input readonly="true" type="text" (click)="openCategoryDialog()" [(ngModel)]="inputCategory" placeholder="Category"></ion-input>
 		</ion-item>
 		<div style="height:1px;width:100%;background-color:#DDDDDD"></div>
 
 		<ion-list-header class="list-header">Name</ion-list-header>
 		<div style="height:1px;width:100%;background-color:#DDDDDD"></div>
 		<ion-item>
-			<ion-input style="padding-left:16px" type="text" [(ngModel)]="inputName" placeholder="Name"></ion-input>
+			<ion-input type="text" [(ngModel)]="inputName" placeholder="Name"></ion-input>
 		</ion-item>
 		<div style="height:1px;width:100%;background-color:#DDDDDD"></div>
 
 		<ion-list-header class="list-header">Image</ion-list-header>
 		<div style="height:1px;width:100%;background-color:#DDDDDD"></div>
 		<ion-item>
-			<ion-input style="padding-left:16px" type="url" [(ngModel)]="inputImage" placeholder="http://i.imgur.com/OkHEj66.png"></ion-input>
+			<ion-input type="url" [(ngModel)]="inputImage" placeholder="http://i.imgur.com/OkHEj66.png"></ion-input>
 			<button style="padding:10px" ion-button icon-only item-right clear (click)="searchImage()">
 				<ion-icon style="font-size:30px" name="ios-image-outline"></ion-icon>
 			</button>
