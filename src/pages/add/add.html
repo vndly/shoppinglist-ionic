@@ -13,11 +13,14 @@
 
 <ion-content>
 
-	<ion-item style="background-color:#EFEFF4">
-		<ion-select [selectOptions]="selectOptions" (ngModelChange)="categorySelected($event)" [(ngModel)]="selectedCategory" interface="action-sheet" class="category-select" multiple="false">
-			<ion-option *ngFor="let category of categories" value="{{category.name}}" multiple="false">{{category.name}}</ion-option>
-		</ion-select>
-	</ion-item>
+	<ion-list no-lines style="margin-bottom:0px">
+		<ion-item style="background-color:#EFEFF4">
+			<ion-select [selectOptions]="selectOptions" (ngModelChange)="categorySelected($event)" [(ngModel)]="selectedCategory" interface="action-sheet" class="category-select" multiple="false">
+				<ion-option *ngFor="let category of categories" value="{{category.name}}" multiple="false">{{category.name}}</ion-option>
+			</ion-select>
+		</ion-item>
+	</ion-list>
+	<div style="height:0.5px;width:100%;background-color:#BBBBBB"></div>
 
 	<ion-slides (ionSlideDidChange)="slideChanged()" style="height: auto">
 		
