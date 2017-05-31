@@ -12,7 +12,8 @@ import { DatabaseService } from '../../app/services/database'
 export class CategoriesPage
 {
 	private categories: Category[]
-	private callback
+	private callbackSelect
+	private callbackRename
 
 	constructor(private navCtrl: NavController,
 				private navParams: NavParams,
@@ -20,8 +21,9 @@ export class CategoriesPage
 				private dialog: DialogService,
 				private database: DatabaseService)
 	{
-		this.categories = this.database.categories()
-		this.callback   = this.navParams.get('callback')
+		this.categories     = this.database.categories()
+		this.callbackSelect = this.navParams.get('callbackSelect')
+		this.callbackRename = this.navParams.get('callbackRename')
 	}
 
 	public ionViewDidEnter()
@@ -91,8 +93,13 @@ export class CategoriesPage
 		{
 			if (name)
 			{
+				var oldName = category.name
+				var newName = name
+
 				if (this.database.renameCategory(category, name))
 				{
+					this.callbackRename(oldName, newName)
+
 					this.refreshCategories()
 				}
 				else
@@ -132,7 +139,7 @@ export class CategoriesPage
 
 	public selectCategory(category: Category)
 	{
-		this.callback(category).then(() => {
+		this.callbackSelect(category).then(() => {
 			this.navCtrl.pop()
 		})
 	}

@@ -146,7 +146,7 @@ export class CreatePage
 
 	public manageCategories()
 	{
-		let callback = (category) => {
+		let callbackSelect = (category) => {
 			return new Promise((resolve, reject) => {
 				resolve()
 				
@@ -154,8 +154,20 @@ export class CreatePage
 			})
 		}
 
+		let callbackRename = (oldName, newName) => {
+			return new Promise((resolve, reject) => {
+				resolve()
+				
+				if (this.inputCategory == oldName)
+				{
+					this.inputCategory = newName
+				}
+			})
+		}
+
 		this.navCtrl.push(CategoriesPage, {
-			callback: callback
+			callbackSelect: callbackSelect,
+			callbackRename: callbackRename
 		})
 	}
 }
