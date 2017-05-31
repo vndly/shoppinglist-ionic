@@ -15,27 +15,32 @@
 </ion-header>
 
 <ion-content>
-	<ion-list>
 
-		<ion-item-sliding *ngFor="let item of items">
+	<ion-list no-lines>
 
-			<ion-item (click)="toggleItem(item)" [class.row-completed]="item.completed">
-				<ion-thumbnail item-left>
-						<img src="{{item.image}}">
-				</ion-thumbnail>
-				<div [class.completed]="item.completed">
-					{{item.product}}
-				</div>
-				<ion-icon *ngIf="item.completed" name="ios-checkmark" item-right></ion-icon>
-			</ion-item>
+		<div *ngFor="let item of items">
+			<ion-item-sliding>
 
-			<ion-item-options>
-				<button ion-button icon-only (click)="removeItem(item)" color="danger">
-                    <ion-icon name="trash"></ion-icon>
-                </button>
-			</ion-item-options>
+				<ion-item (click)="toggleItem(item)" [class.row-completed]="item.completed">
+					<ion-thumbnail item-left>
+							<img src="{{item.image}}">
+					</ion-thumbnail>
+					<div [class.completed]="item.completed">
+						{{item.product}}
+					</div>
+					<ion-icon *ngIf="item.completed" name="ios-checkmark" item-right></ion-icon>
+				</ion-item>
 
-		</ion-item-sliding>
+				<ion-item-options>
+					<button ion-button icon-only (click)="removeItem(item)" color="danger">
+						<ion-icon name="trash"></ion-icon>
+					</button>
+				</ion-item-options>
+
+			</ion-item-sliding>
+			<div style="height:1px;width:100%;background-color:#DDDDDD"></div>
+		</div>
 
 	</ion-list>
+
 </ion-content>

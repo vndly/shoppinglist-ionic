@@ -26,21 +26,24 @@
 		
 		<ion-slide *ngFor="let category of categories" class="category-slide">
 			
-			<ion-list>
+			<ion-list no-lines>
 				
-				<ion-item *ngFor="let product of products | productFilter:category" (click)="addProduct(product)">
-					
-					<ion-thumbnail item-left>
-						<img src="{{product.image}}">
-					</ion-thumbnail>
-					
-					{{product.name}}
+				<div *ngFor="let product of products | productFilter:category">
+					<ion-item (click)="addProduct(product)">
+						
+						<ion-thumbnail item-left>
+							<img src="{{product.image}}">
+						</ion-thumbnail>
+						
+						{{product.name}}
 
-					<button style="padding-left:10px" ion-button icon-only item-right clear (click)="showProductOptions(product, $event)">
-						<ion-icon name="ios-create-outline" style="font-size:30px" item-right></ion-icon>
-					</button>
-					
-				</ion-item>
+						<button style="padding-left:10px" ion-button icon-only item-right clear (click)="showProductOptions(product, $event)">
+							<ion-icon name="ios-create-outline" style="font-size:30px" item-right></ion-icon>
+						</button>
+						
+					</ion-item>
+					<div style="height:1px;width:100%;background-color:#DDDDDD"></div>
+				</div>
 
 			</ion-list>
 
