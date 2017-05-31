@@ -178,9 +178,21 @@ export class CreatePage
 			})
 		}
 
+		let callbackRemove = (category) => {
+			return new Promise((resolve, reject) => {
+				resolve()
+				
+				if (this.inputCategory == category)
+				{
+					this.inputCategory = ''
+				}
+			})
+		}
+
 		this.navCtrl.push(CategoriesPage, {
 			callbackSelect: callbackSelect,
-			callbackRename: callbackRename
+			callbackRename: callbackRename,
+			callbackRemove: callbackRemove
 		})
 	}
 }

@@ -14,6 +14,7 @@ export class CategoriesPage
 	private categories: Category[]
 	private callbackSelect
 	private callbackRename
+	private callbackRemove
 
 	constructor(private navCtrl: NavController,
 				private navParams: NavParams,
@@ -24,6 +25,7 @@ export class CategoriesPage
 		this.categories     = this.database.categories()
 		this.callbackSelect = this.navParams.get('callbackSelect')
 		this.callbackRename = this.navParams.get('callbackRename')
+		this.callbackRemove = this.navParams.get('callbackRemove')
 	}
 
 	public ionViewDidEnter()
@@ -129,6 +131,8 @@ export class CategoriesPage
 	{
 		if (this.database.removeCategory(category))
 		{
+			this.callbackRemove(category.name)
+
 			this.refreshCategories()
 		}
 		else
