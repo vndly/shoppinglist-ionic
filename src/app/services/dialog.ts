@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { AlertController } from 'ionic-angular'
+import { Category } from '../models/category'
 
 @Injectable()
 export class DialogService
@@ -27,6 +28,44 @@ export class DialogService
 		})
 		prompt.present()
 	}
+
+	public selectCategory(categories: Category[], selected, callbackOk: (data) => any, callbackCreate: () => any = null)
+	{
+		let alert = this.alertCtrl.create()
+
+		alert.setTitle('Category')
+
+		for (let category of categories)
+		{
+			alert.addInput({
+				type: 'radio',
+				label: category.name,
+				value: category.name,
+				checked: category.name == selected
+			})
+		}
+
+		alert.addButton('Cancel')
+
+		if (callbackCreate != null)
+		{
+			alert.addButton({
+				text: 'Manage categories',
+				handler: data => {
+					callbackCreate()
+				}
+			})
+		}
+
+		alert.addButton({
+			text: 'OK',
+			handler: data => {
+				callbackOk(data)
+			}
+		})
+
+		alert.present()
+  	}
 
 	public prompt(title: string, inputs, button: string, callback: (data) => any)
 	{

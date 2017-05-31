@@ -144,6 +144,19 @@ export class CreatePage
 		img.src = this.defaultImage
 	}
 
+	public openCategoryDialog()
+	{
+		this.dialog.selectCategory(
+			this.categories,
+			this.inputCategory,
+			(data) => {
+				this.inputCategory = data
+			},
+			() => {
+				this.manageCategories()
+			})
+	}
+
 	public manageCategories()
 	{
 		let callbackSelect = (category) => {
