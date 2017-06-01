@@ -4,8 +4,8 @@
 			{{title}}
 		</ion-title>
 		<ion-buttons end>
-			<button ion-button icon-only (click)="manageCategories()">
-				<ion-icon style="font-size:25px" name="ios-pricetag-outline"></ion-icon>
+			<button ion-button (click)="createProduct()">
+				{{button}}
 			</button>
 		</ion-buttons>
 	</ion-navbar>
@@ -45,12 +45,8 @@
 		<img id="pewviewImageTag" class="image-preview" (error)="imageError()" src="{{(inputImage.length == 0) ? defaultImage : inputImage}}" />
 	</div>
 
-	<div class="create-product-button">
-		<button (click)="createProduct()" class="button button-ios button-default button-default-ios button-block button-block-ios" ion-button>{{(this.editProduct != null) ? 'Update' : 'Create'}}</button>
-	</div>
- 
- 	<ion-list no-lines style="margin-top:15px">
-		<ion-item class="item-borderless">
+	<ion-list *ngIf="editProduct == null" no-lines style="position:absolute;bottom:0px;margin-bottom:10px">
+		<ion-item>
 			<ion-checkbox [(ngModel)]="addToCart"></ion-checkbox>
 			<ion-label>Add to cart automatically</ion-label>
 		</ion-item>
