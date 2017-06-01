@@ -14,9 +14,13 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content center text-center>
 
-	<ion-list no-lines>
+	<div *ngIf="emptyList" class="empty-label">
+		<ion-label>Empty cart</ion-label>
+	</div>
+
+	<ion-list no-lines *ngIf="!emptyList">
 
 		<div *ngFor="let item of items">
 			<ion-item-sliding>

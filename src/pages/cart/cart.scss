@@ -9,4 +9,17 @@ page-cart {
 	{
 		background-color: #F0F0F0;
 	}
+
+	.empty-label
+	{
+		height: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		vertical-align: middle;
+		text-align: center;
+		color: #888888;
+		font-size: 17px;
+	}
 }

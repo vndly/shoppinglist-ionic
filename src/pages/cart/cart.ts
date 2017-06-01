@@ -15,6 +15,7 @@ export class CartPage
 {
 	private items: Item[]
 	private itemsInList: boolean = false
+	private emptyList: boolean = false
 
 	constructor(private navCtrl: NavController,
 				private loadingCtrl: LoadingController,
@@ -101,6 +102,7 @@ export class CartPage
 
 		this.items = incompleted.concat(completed)
 
+		this.emptyList = this.items.length == 0
 		this.itemsInList = incompleted.length > 0
 	}
 
