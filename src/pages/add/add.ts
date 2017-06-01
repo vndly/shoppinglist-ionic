@@ -145,7 +145,9 @@ export class AddPage
 
 	public createProduct()
 	{
-		this.navCtrl.push(CreatePage)
+		this.navCtrl.push(CreatePage, {
+			category: this.selectedCategory
+		})
 	}
 
 	public ionViewWillEnter()

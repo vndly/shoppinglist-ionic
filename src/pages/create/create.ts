@@ -46,6 +46,8 @@ export class CreatePage
 		{
 			this.title  = 'Create product'
 			this.button = 'Create'
+
+			this.inputCategory = this.navParams.get('category')
 		}
 	}
 
